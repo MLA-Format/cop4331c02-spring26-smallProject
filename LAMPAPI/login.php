@@ -1,5 +1,24 @@
 <?php
 
+	$inData = getRequestInfo();
+
+	# Initializing variables.
+	$id = 0;
+	$firstName = "";
+	$lastName = "";
+
+	# Initializing database connection.
+	# TODO: Change admin credentials.
+	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+
+	# If statement used to validate the connection.
+	if ($conn->connect_error)
+	{
+		returnWithError($conn->connect_error);
+	} else {
+		# TODO: Add logic for when database connection is successful.
+	}
+
 	# This function returns the json response.
 	function getRequestInfo() : stdClass
 	{
