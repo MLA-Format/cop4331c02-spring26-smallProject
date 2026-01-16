@@ -14,7 +14,7 @@
 		echo $obj;
 	}
 
-	# This function handles adding an error value to the data and then sending it.
+	# This function handles sending the data when there is an error.
 	function returnWithError($err) : void
 	{
 		# TODO: Validate $retVal json is correct.
@@ -22,4 +22,11 @@
 		sendResultInfoAsJson($retVal);
 	}
 
+	# This function handles sending the data when there is no error.
+	# TODO: Validate parameters are correct.
+	function returnWithInfo (String $firstName, String $lastName, int $id)
+	{
+		$retVal = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		sendResultInfoAsJson($retVal);
+	}
 ?>
