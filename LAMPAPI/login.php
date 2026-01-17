@@ -1,5 +1,9 @@
 <?php
 
+	require_once __DIR__ . '/vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+	$dotenv->load();
+
 	$inData = getRequestInfo();
 
 	# Initializing variables.
@@ -9,7 +13,7 @@
 
 	# Initializing database connection.
 	# TODO: Change admin credentials.
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli(getenv("DATABASE_HOST"), getenv("DATABASE_USER"), getenv("DATABASE_PASS"), getenv("DATABASE_NAME"));
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
@@ -18,7 +22,7 @@
 	} else {
 		# Running SQL statement.
 		# TODO: Add SQL Statement later.
-		$sqlStatement = $conn->prepare("");
+		$sqlStatement = $conn->prepare(getenv("SQL_LOGIN"));
 		$sqlStatement->bind_param("ss", $inData["login"], $inData["password"]);
 		$sqlStatement->execute();
 
@@ -27,7 +31,7 @@
 		{
 			# TODO: Add specific column fields later.
 			returnWithInfo(void);
-		} else {
+		} else {query-
 			returnWithError("NOT_FOUND");
 		}
 
