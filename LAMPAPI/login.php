@@ -12,7 +12,7 @@
 	$lastName = "";
 
 	# Initializing database connection.
-	# TODO: Change admin credentials.
+	# TODO: Add credentials to .env.
 	$conn = new mysqli(getenv("DATABASE_HOST"), getenv("DATABASE_USER"), getenv("DATABASE_PASS"), getenv("DATABASE_NAME"));
 
 	# If statement used to validate the connection.
