@@ -16,7 +16,26 @@
 	{
 		returnWithError($conn->connect_error);
 	} else {
-		# TODO: Add logic for when database connection is successful.
+		# Running SQL statement.
+		# TODO: Add SQL Statement later.
+		$stmt = $conn->prepare("");
+		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->execute();
+
+		# Checking SQL statement results.
+		if ($row = $result->fetch_assoc())
+		{
+			# TODO: Add specific column fields later.
+			returnWithInfo(void);
+		} else {
+			returnWithError("NOT_FOUND");
+		}
+
+		# Close all connections.
+		$stmt->close();
+		$conn->close();
+
+
 	}
 
 	# This function returns the json response.
