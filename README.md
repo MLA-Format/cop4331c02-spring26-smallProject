@@ -3,8 +3,10 @@
 ## Composer (Package manager)
 
 ## vlucas/phpdotenv package:
+'''
 cd /var/www/html/
 composer require vlucas/phpdotenv
+'''
 
 # AI Attributions:
 
