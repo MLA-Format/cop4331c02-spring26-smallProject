@@ -18,12 +18,12 @@
 	} else {
 		# Running SQL statement.
 		# TODO: Add SQL Statement later.
-		$stmt = $conn->prepare("");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
-		$stmt->execute();
+		$sqlStatement = $conn->prepare("");
+		$sqlStatement->bind_param("ss", $inData["login"], $inData["password"]);
+		$sqlStatement->execute();
 
 		# Checking SQL statement results.
-		if ($row = $result->fetch_assoc())
+		if ($row = $sqlStatement->get_result()->fetch_assoc())
 		{
 			# TODO: Add specific column fields later.
 			returnWithInfo(void);
@@ -32,7 +32,7 @@
 		}
 
 		# Close all connections.
-		$stmt->close();
+		$sqlStatement->close();
 		$conn->close();
 
 
