@@ -13,7 +13,7 @@
 ### Backend
 - [ ] .js File
 - [ ] User creation/register API
-- [ ] User login API (Awaiting debugging - 01/17/26)
+- [ ] User login API (Awaiting sql/debugging - 01/17/26)
 - [ ] Contact creation API.
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results)
 - [ ] Contact update API.
