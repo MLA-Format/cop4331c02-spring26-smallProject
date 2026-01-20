@@ -1,16 +1,16 @@
 # Todo:
-## Front-end (List not complete)
+### Front-end (List not complete)
 - [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
 - [ ] Delete confirmation for contact deletion.
 - [ ] Contact management UI.
-## Database
+### Database
 - [ ] Create database.
 - [ ] Create user table.
 - [ ] Create contacts table (minimum data: name, email, phone, date).
 - [ ] Per contact, link to user using foreign key.
 - [ ] Create admin user (for APIs)
 - [ ] Entity relationship diagram (ERD)
-## Backend
+### Backend
 - [ ] .js File
 - [ ] User creation/register API
 - [ ] User login API (Awaiting debugging - 01/17/26)
@@ -19,7 +19,7 @@
 - [ ] Contact update API.
 - [ ] Contact delete API.
 - [ ] SwaggerHub testing.
-## Presentation (More information on assignment description on Canvas)
+### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
 - [ ] Members page
 - [ ] Project description (What it is, how it was developed, etc.)
@@ -27,7 +27,7 @@
 - [ ] What did/didn't go well.
 - [ ] Project Demo
 - [ ] Swaggerhub demo of APIs (no more than 2)
-## Etc.
+### Etc.
 - [ ] Test on phones.
 - [ ] Test on different browser pane sizes.
 - [ ] Validate functionality on server.
@@ -38,9 +38,9 @@
 
 # Requirements:
 
-## Composer (Package manager)
+### Composer (Package manager)
 
-## vlucas/phpdotenv package:
+### vlucas/phpdotenv package:
 ~~~
 cd /var/www/html/
 
@@ -49,7 +49,7 @@ composer require vlucas/phpdotenv
 
 # AI Attributions:
 
-## Mason
+### Mason
 Used Claude to understand the login.php provided by Professor Leinecker. During this, Claude recommended moving sensitive data to a .env file. After this suggestion, I read about how to set up a .env file in PHP and the security benefits. I also discussed the necessary setup and server structure for the .env file with Claude.
 
 I also used Claude to help understand why I cannot push an empty folder to a github repository as well as to find a workaround to this. The workaround was using .gitkeep files.
