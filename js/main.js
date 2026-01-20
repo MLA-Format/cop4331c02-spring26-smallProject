@@ -7,6 +7,53 @@ let firstName = "";
 let lastName = "";
 
 function login() {
+	userId = 0;
+	firstName = "";
+	lastName = "";
+
+	// TODO: Add actual element ids.
+	let login = document.getElementById("x").value;
+	let password = document.getElementById("loginPassword").value;
+	// TODO: Implement hash function here. Note: MD5 may not be secure.
+
+	document = getElementById("x").innerHTML = "";
+
+	// TODO: Change password to be hashed value.
+	let tmp = { login: login, password: password };
+
+	let jsonPayload = JSON.stringify(tmp);
+
+	// TODO: Add path for php login api.
+	let url = urlPrefix + '' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObj = JSON.parse(xhr.responseText);
+				userId = jsonObj.id;
+
+				if (userId < 1) {
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect.";
+					return;
+				}
+
+				firstName = jsonObj.firstName;
+				lastName = jsonObj.lastName;
+
+				saveCookie();
+
+				// TODO: Add correct page html value.
+				window.location.href = "";
+			}
+		});
+		xhr.send(jsonPayload);
+	} catch (err) {
+		docment.getElementById("x").innerHTML = err.message;
+	}
 }
 
 function logout() {
