@@ -23,6 +23,28 @@ function saveCookie() {
 
 // Reads a cookie for user validation.
 function readCookie() {
+	userId = -1;
+	let data = document.cookie;
+	let splits = data.split(",");
+
+	for (var i = 0; i < splits.length; i++) {
+		let this = splits[i].trim();
+		let tokens = this.split("=");
+
+		if (tokens[0] == "firstName") {
+			firstName = tokens[1];
+		} else if (tokens[0] == "lastName") {
+			lastName = tokens[1];
+		} else if (tokens[0] == "userId") {
+			userId = parseInt(tokens[1].trim());
+		}
+	}
+
+	if (userId < 0) {
+		window.loction.href = "index.html";
+	} else {
+		// TODO: Logic for logging in. URL should just use firstname/lastnamae
+	}
 }
 
 function addUser() {
