@@ -4,20 +4,20 @@
 - [ ] Delete confirmation for contact deletion.
 - [ ] Contact management UI.
 ### Database
-- [ ] Create database.
-- [ ] Create user table.
+- [ ] Create database. (Gabriel)
+- [ ] Create user table. (Gabriel)
 - [ ] Create contacts table (minimum data: name, email, phone, date).
 - [ ] Per contact, link to user using foreign key.
-- [ ] Create admin user (for APIs)
+- [ ] Create admin user (for APIs) (Gabriel)
 - [ ] Entity relationship diagram (ERD)
 ### Backend
-- [ ] .js File
-- [ ] User creation/register API
-- [ ] User login API (Awaiting sql/debugging - 01/17/26)
-- [ ] Contact creation API.
-- [ ] Contact read API + contact search API w/ partial match (Cannot cache all results)
-- [ ] Contact update API.
-- [ ] Contact delete API.
+- [ ] .js File (Mason - In Progress)
+- [ ] User creation/register API (Mason)
+- [ ] User login API (Awaiting sql/debugging - 01/17/26) (Mason)
+- [ ] Contact creation API. (Adnan)
+- [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
+- [ ] Contact update API. (Adnan)
+- [ ] Contact delete API. (Adnan)
 - [ ] SwaggerHub testing.
 ### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
