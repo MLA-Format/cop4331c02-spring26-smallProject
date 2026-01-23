@@ -1,8 +1,9 @@
 <?php
 
 	# This function returns a data array as a json response.
-	function returnRespnseAsJson(array $dataArr) : void
+	function returnResponseAsJson(array $dataArr = [], string $err = "") : void
 	{
+		$dataArr["error"] = $err;
 		header('Content-type: application/json');
 		echo json_encode($dataArr);
 	}
