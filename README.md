@@ -12,8 +12,8 @@
 - [ ] Entity relationship diagram (ERD)
 ### Backend
 - [ ] .js File (Mason - In Progress)
-- [ ] User creation/register API (Mason)
-- [ ] User login API (Awaiting sql/debugging - 01/17/26) (Mason)
+- [x] User creation/register API (Mason: 1/22 - 1/23)
+- [ ] User login API (Need to Redo) (Mason)
 - [ ] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
