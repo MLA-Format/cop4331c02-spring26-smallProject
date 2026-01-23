@@ -3,9 +3,9 @@
 - [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
 - [ ] Delete confirmation for contact deletion.
 - [ ] Contact management UI.
-- [ ] Sign in page
-- [ ] Login Page
-- [ ] Landing Page
+- [x] Sign in page
+- [x] Login Page
+- [x] Landing Page
 ### Database
 - [ ] Create database. (Gabriel)
 - [ ] Create user table. (Gabriel)
