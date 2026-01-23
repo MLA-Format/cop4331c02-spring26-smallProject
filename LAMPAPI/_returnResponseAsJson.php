@@ -3,7 +3,10 @@
 	# This function returns a data array as a json response.
 	function returnResponseAsJson(array $dataArr = [], string $err = "") : void
 	{
-		$dataArr["error"] = $err;
+		if ($err !== "")
+		{
+			$dataArr["error"] = $err;
+		}
 		header('Content-type: application/json');
 		echo json_encode($dataArr);
 	}
