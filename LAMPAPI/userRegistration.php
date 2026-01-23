@@ -25,7 +25,7 @@
 	}
 
 
-	# This function returns the json response.
+	# This function gets the json request.
 	function getRequestInfo() : array
 	{
 		return json_decode(file_get_contents('php://input'), true);

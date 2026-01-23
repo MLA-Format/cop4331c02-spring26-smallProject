@@ -1,9 +1,9 @@
 <?php
-
-	function sanitizeErrorOut(array $decodedJson) : array
+	# This function sanitized all values in an associative array for returning when an error occurs.
+	function sanitizeErrorOut(array $arr) : array
 	{
 		$sanitizedArr = array();
-		foreach ($decodedJson as $key => $val)
+		foreach ($arr as $key => $val)
 		{
 			if (is_string($val))
 			{
