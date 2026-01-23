@@ -17,4 +17,13 @@
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
+	
+	# TODO: Look into sharing functions between php files.
+	function sendResultInfoAsJson(stdClass $obj) : void
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
+
+	
 ?>
