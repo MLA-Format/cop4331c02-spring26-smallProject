@@ -14,7 +14,7 @@
 	
 	# Initializing database connection.
 	# TODO: Add credentials to .env.
-	$conn = new mysqli(getenv("DATABASE_HOST"), getenv("DATABASE_USER"), getenv("DATABASE_PASS"), getenv("DATABASE_NAME"));
+	$conn = new mysqli(getenv("HOST"), getenv("USER"), getenv("PASS"), getenv("TBLE"));
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
@@ -22,8 +22,7 @@
 		returnResponseAsJson(dataArr: sanitizeErrorOut($res), err: $conn->connect_error);
 	} else {
 		# Running SQL statement.
-		# TODO: Add SQL Statement later.
-		$sqlStatement = $conn->prepare(getenv("SQL_LOGIN"));
+		$sqlStatement = $conn->prepare(getenv("LOGIN_SQL"));
 		$sqlStatement->bind_param("ss", $inData["login"], $inData["password"]);
 		$sqlStatement->execute();
 

@@ -2,7 +2,7 @@
 ### Front-end (List not complete)
 - [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
 - [ ] Delete confirmation for contact deletion.
-- [ ] Contact management UI.
+- [ ] Contact management UI. (Michelin)
 ### Database
 - [ ] Create database. (Gabriel)
 - [ ] Create user table. (Gabriel)
@@ -11,9 +11,9 @@
 - [ ] Create admin user (for APIs) (Gabriel)
 - [ ] Entity relationship diagram (ERD)
 ### Backend
-- [ ] .js File (Mason - In Progress)
+- [ ] .js File (Mason - In Progress) (1/19 - ?)
 - [x] User creation/register API (Mason: 1/22 - 1/23)
-- [ ] User login API (Need to Redo) (Mason)
+- [x] User login API (1/15 - 1/23) (Mason)
 - [ ] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
