@@ -8,14 +8,14 @@
 	$inData = getRequestInfo();
 
 	# TODO: Populate env vals.
-	$dbConn = new mysqli(getenv("host"), getenv("user"), getenv("pass"), getenv("tble"));
+	$dbConn = new mysqli(getenv("HOST"), getenv("USER"), getenv("PASS"), getenv("TBLE"));
 	if ($dbConn->connect_error)
 	{
 		returnResponseAsJson(err: $dbConn->connect_error);
 	}
 	else
 	{
-		$sqlStatement = $dbConn->prepare(getenv("insertUser"));
+		$sqlStatement = $dbConn->prepare(getenv("INSERT_USER_SQL"));
 		# TODO: Add password hashing.
 		$sqlStatement->bind_param("ssss", $inData["firstNameRef"], $inData["lastNameRef"], $inData["username"], $inData["password"]);
 		$sqlStatement->execute();

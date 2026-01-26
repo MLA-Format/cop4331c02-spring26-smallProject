@@ -2,7 +2,7 @@
 ### Front-end (List not complete)
 - [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
 - [ ] Delete confirmation for contact deletion.
-- [ ] Contact management UI.
+- [ ] Contact management UI. (Michelin)
 - [x] Sign in page
 - [x] Login Page
 - [x] Landing Page
@@ -14,9 +14,9 @@
 - [ ] Create admin user (for APIs) (Gabriel)
 - [ ] Entity relationship diagram (ERD)
 ### Backend
-- [ ] .js File (Mason - In Progress)
+- [ ] .js File (Mason - In Progress) (1/19 - ?)
 - [x] User creation/register API (Mason: 1/22 - 1/23)
-- [ ] User login API (Need to Redo) (Mason)
+- [x] User login API (1/15 - 1/23) (Mason)
 - [ ] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
@@ -52,7 +52,7 @@ composer require vlucas/phpdotenv
 
 # AI Attributions:
 
-### Mason
+## Mason
 Used Claude to understand the login.php provided by Professor Leinecker. During this, Claude recommended moving sensitive data to a .env file. After this suggestion, I read about how to set up a .env file in PHP and the security benefits. I also discussed the necessary setup and server structure for the .env file with Claude.
 
 I also used Claude to help understand why I cannot push an empty folder to a github repository as well as to find a workaround to this. The workaround was using .gitkeep files.
