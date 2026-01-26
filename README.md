@@ -39,6 +39,56 @@
 - [ ] Add slideshow + all supporting media to USB drive.
 - [ ] Submit all deliverables on Canvas.
 
+
+```mermaid
+gantt
+  title Small Project Gantt Chart
+  dateFormat MM-DD-YYYY
+  section Frontend
+  Login pg           :01-19-2026, 1d
+  Sign in pg         :01-19-2026, 1d
+  Landing pg         :01-19-2026, 1d
+  Bind to APIs :crit, 01-13-2026, 1d
+  Delete confirm  :crit, 01-13-2026, 1d
+  Contact mgmt UI :active, 01-23-2026, 3d
+  section SQL
+  Create DB      :active, 01-22-2026, 4d
+  User table    :active, 01-22-2026, 4d
+  Contacts table :active, 01-22-2026, 4d
+  Link contacts :crit, 01-13-2026, 1d
+  Admin user    :active, 01-22-2026, 4d
+  ERD                  :crit, 01-13-2026, 1d
+  section Backend
+  .js File             :active, 01-20-2026, 6d
+  User create API    :01-22-2026, 1d
+  User login API       :01-15-2026, 8d
+  Contact create API :active, 01-23-2026, 3d
+  Contact read API     :crit, 01-13-2026, 1d
+  Contact update API   :crit, 01-13-2026, 1d
+  Contact delete API   :active, 01-23-2026, 3d
+  SwaggerHub   :crit, 01-13-2026, 1d
+  Encryption :crit, 01-13-2026, 1d
+  section Presentation
+  Title pg           :crit, 01-13-2026, 1d
+  Members pg         :crit, 01-13-2026, 1d
+  Project desc  :crit, 01-13-2026, 1d
+  Charts      :crit, 01-13-2026, 1d
+  What went well :crit, 01-13-2026, 1d
+  Demo         :crit, 01-13-2026, 1d
+  Swagger demo      :crit, 01-13-2026, 1d
+  section Etc
+  Test phones       :crit, 01-13-2026, 1d
+  Test browsers   :crit, 01-13-2026, 1d
+  Validate server   :crit, 01-13-2026, 1d
+  Lighthouse    :crit, 01-13-2026, 1d
+  Check UCF  :crit, 01-13-2026, 1d
+  USB drive     :crit, 01-13-2026, 1d
+  Submit Canvas     :crit, 01-13-2026, 1d
+
+```
+Note: Red items have not been started. Blue items are in progress. Gray items are complete.
+
+
 # Requirements:
 
 ### Composer (Package manager)
