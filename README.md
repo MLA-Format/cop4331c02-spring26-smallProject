@@ -14,10 +14,10 @@
 - [ ] .js File (Mason - In Progress) (1/19 - ?)
 - [x] User creation/register API (Mason: 1/22 - 1/23)
 - [x] User login API (1/15 - 1/23) (Mason)
-- [x] Contact creation API. (Adnan)
+- [x] Contact creation API. (1/23)(Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
-- [x] Contact delete API. (Adnan)
+- [x] Contact delete API. (1/24-1/25) (Adnan)
 - [ ] SwaggerHub testing.
 ### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
