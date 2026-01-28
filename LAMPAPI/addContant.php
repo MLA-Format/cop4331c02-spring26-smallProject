@@ -1,7 +1,8 @@
 <?php
 
 	require_once __DIR__ . '/vendor/autoload.php';
-	require_once __DIR__ . '/helpers.php';
+	require_once . '_returnResponseAsJson.php'
+	
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 
@@ -24,7 +25,7 @@
 		returnResponseAsJson(sanitizeErrorOut(compact('id', 'firstName', 'lastName', 'phone', 'email', 'userID')), $conn->connect_error);
 	} else {
 		# Running SQL statement.
-		$sqlStatement = $conn->prepare("INSERT INTO COP4331Contacts (firstName, lastName, phone, email, userID) VALUES (?, ?, ?, ?, ?)");
+		$sqlStatement = $conn->prepare("INSERT INTO Contacts (firstName, lastName, phone, email, userID) VALUES (?, ?, ?, ?, ?)");
 		$sqlStatement->bind_param("ssssi", $inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["userID"]);
 		$sqlStatement->execute();
 

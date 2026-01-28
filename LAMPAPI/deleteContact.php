@@ -1,7 +1,8 @@
 <?php
 
 	require_once __DIR__ . '/vendor/autoload.php';
-	require_once __DIR__ . '/helpers.php';
+	require_once . '_returnResponseAsJson.php'
+	
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 
@@ -19,7 +20,7 @@
 		returnResponseAsJson(sanitizeErrorOut(compact('id')), $conn->connect_error);
 	} else {
 		# Running SQL statement.
-		$sqlStatement = $conn->prepare("DELETE FROM COP4331Contacts WHERE ID = ?");
+		$sqlStatement = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
 		$sqlStatement->bind_param("i", $inData["id"]);
 		$sqlStatement->execute();
 
@@ -41,4 +42,4 @@
 	{
 		return json_decode(file_get_contents('php://input'), true);	
 	}
-?>
+?>clea
