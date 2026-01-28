@@ -1,3 +1,107 @@
+let firstNameRef = document.getElementById("firstName");
+let lastNameRef = document.getElementById("lastName");
+let usernameRef = document.getElementById("username");
+let passwordRef = document.getElementById("password");
+let eyeL = document.querySelector(".eyeball-1");
+let eyeR = document.querySelector(".eyeball-r");
+let handL = document.querySelector(".hand-1");
+let handR = document.querySelector(".hand-r");
+
+let normalEyeStyle = () => {
+    eyeL.style.cssText = `
+        left: 0.6em;
+        top: 0.6em;
+    `;
+    eyeR.style.cssText = `
+        right: 0.6em;
+        top: 0.6em;
+    `;
+};
+
+let normalHandStyle = () => {
+    handL.style.cssText = `
+        height: 2.81em;
+        top: 8.4em;
+        left: 7.5em;
+        transform: rotate(0deg);
+    `;
+    handR.style.cssText = `
+        height: 2.81em;
+        top: 8.4em;
+        right: 7.5em;
+        transform: rotate(0deg);
+    `;
+}
+
+usernameRef.addEventListener("focus", () => {
+    eyeL.style.cssText = `
+        left: 0.75em;
+        top: 1.12em;
+    `;
+    eyeR.style.cssText = `
+        right: 0.75em;
+        top: 1.12em;
+    `;
+    normalHandStyle();
+});
+
+if (firstNameRef) {
+    firstNameRef.addEventListener("focus", () => {
+        eyeL.style.cssText = `
+            left: 0.75em;
+            top: 1.12em;
+        `;
+        eyeR.style.cssText = `
+            right: 0.75em;
+            top: 1.12em;
+        `;
+        normalHandStyle();
+    });
+}
+
+if (lastNameRef) {
+    lastNameRef.addEventListener("focus", () => {
+        eyeL.style.cssText = `
+            left: 0.75em;
+            top: 1.12em;
+        `;
+        eyeR.style.cssText = `
+            right: 0.75em;
+            top: 1.12em;
+        `;
+        normalHandStyle();
+    });
+}
+
+passwordRef.addEventListener("focus", () => {
+    handL.style.cssText =  `
+        height: 6.56em;
+        top: 3.87em;
+        left: 11.75em;
+        transform: rotate(-155deg);
+    `;
+    handR.style.cssText =  `
+        height: 6.56em;
+        top: 3.87em;
+        right: 11.75em;
+        transform: rotate(155deg);
+    `;
+});
+
+document.addEventListener("click", (e) => {
+    let clickedElem = e.target;
+    
+    if (clickedElem == usernameRef || clickedElem == passwordRef || clickedElem == firstNameRef || clickedElem == lastNameRef) {
+        eyeL.style.top = "1.2em";
+        eyeR.style.top = "1.2em";
+    } else {
+        normalEyeStyle();
+        normalHandStyle(); 
+    }
+});
+
+
+
 // TODO: Add actual prefix
 const urlPrefix = 'http://x/LAMPAPI';
 const extension = 'php';
@@ -7,16 +111,20 @@ let firstName = "";
 let lastName = "";
 
 function login() {
+	console.log("LOGIN attempt");
+    console.log("Username:", username.value);
+    console.log("Password:", passwordRef.value);
+
 	userId = 0;
 	firstName = "";
 	lastName = "";
 
-	// TODO: Add actual element ids.
-	let login = document.getElementById("x").value;
-	let password = document.getElementById("loginPassword").value;
+
+	let login = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
 	// TODO: Implement hash function here. Note: MD5 may not be secure.
 
-	document = getElementById("x").innerHTML = "";
+	document.getElementById("x").innerHTML = "";
 
 	// TODO: Change password to be hashed value.
 	let tmp = { login: login, password: password };
@@ -49,10 +157,10 @@ function login() {
 				// TODO: Add correct page html value.
 				window.location.href = "";
 			}
-		});
+		};
 		xhr.send(jsonPayload);
 	} catch (err) {
-		docment.getElementById("x").innerHTML = err.message;
+		document.getElementById("x").innerHTML = err.message;
 	}
 }
 
@@ -81,8 +189,8 @@ function readCookie() {
 	let splits = data.split(",");
 
 	for (var i = 0; i < splits.length; i++) {
-		let this = splits[i].trim();
-		let tokens = this.split("=");
+		let item = splits[i].trim();
+		let tokens = item.split("=");
 
 		if (tokens[0] == "firstName") {
 			firstName = tokens[1];
@@ -93,14 +201,20 @@ function readCookie() {
 		}
 	}
 
+
 	if (userId < 0) {
-		window.loction.href = "index.html";
+		window.location.href = "index.html";
 	} else {
 		// TODO: Logic for logging in. URL should just use firstname/lastnamae
 	}
 }
 
 function addUser() {
+	console.log("SIGN UP attempt");
+    console.log("First:", firstNameRef.value);
+    console.log("Last:", lastNameRef.value);
+    console.log("Username:", username.value);
+    console.log("Password:", password.value);
 }
 
 function addContact() {

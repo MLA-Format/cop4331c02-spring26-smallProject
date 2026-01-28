@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="First Name here..">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Last Name here..">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Username here..">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Password here..">
+            <button type="button" onClick=addUser();>Sign Up</button>
+            <br>
+            <h5 class="account">
+                Already have an account?
+                <a href="login.html" class="login-link">Login</a>
+            </h5>
+        </form>
+        <div class="ear-1"></div>
+        <div class="ear-r"></div>
+        <div class="monkey-face">
+            <div class="face-mask">
+                <div class="mask-left"></div>
+                <div class="mask-right"></div>
+                <div class="mask-bottom"></div>
+            </div>
+            <div class="blush-1"></div>
+            <div class="blush-r"></div>
+            <div class="eye-1">
+                <div class="eyeball-1"></div>
+            </div>
+            <div class="eye-r">
+                <div class="eyeball-r"></div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="hand-1"></div>
+        <div class="hand-r"></div>
+        <div class="paw-1"></div>
+        <div class="paw-r"></div>
+    </div>
+
+    <button type="button" id="signupButton" onclick="window.location.href='index.html';">
+        Back to Landing Page
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
