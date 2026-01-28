@@ -7,20 +7,20 @@
 - [x] Login Page
 - [x] Landing Page
 ### Database
-- [ ] Create database. (Gabriel)
-- [ ] Create user table. (Gabriel)
-- [ ] Create contacts table (minimum data: name, email, phone, date).
-- [ ] Per contact, link to user using foreign key.
-- [ ] Create admin user (for APIs) (Gabriel)
+- [x] Create database. (Gabriel)
+- [x] Create user table. (Gabriel)
+- [x] Create contacts table (minimum data: name, email, phone, date).
+- [ ] Per contact, link to user using foreign key. (Gabriel)
+- [x] Create admin user (for APIs) (Gabriel) (1-27-26)
 - [ ] Entity relationship diagram (ERD)
 ### Backend
-- [ ] .js File (Mason - In Progress) (1/19 - ?)
+- [ ] .js File (Emily/Mason/Michelin - In Progress) (1/19 - ?)
 - [x] User creation/register API (Mason: 1/22 - 1/23)
 - [x] User login API (1/15 - 1/23) (Mason)
-- [ ] Contact creation API. (Adnan)
+- [x] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
-- [ ] Contact delete API. (Adnan)
+- [x] Contact delete API. (Adnan)
 - [ ] SwaggerHub testing.
 ### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
