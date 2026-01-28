@@ -90,6 +90,10 @@ form button{
     float: right;
 }
 
+.loginResult {
+    color: red;
+}
+
 .account {
     align-self: center;
 }
