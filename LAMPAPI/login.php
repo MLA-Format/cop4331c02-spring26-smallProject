@@ -4,6 +4,7 @@
 	require_once __DIR__ . '/_returnResponseAsJson.php';
 	require_once __DIR__ . '/_sanitizeErrorOut.php';
 
+	# .env setup.
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
 
@@ -14,7 +15,7 @@
 	
 	# Initializing database connection.
 	# TODO: Add credentials to .env.
-	$conn = new mysqli(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASS"), getenv("DB_TBLE"));
+	$conn = new mysqli($_ENV["DB_HOST"], $_ENV["DB_USER"], $_ENV["DB_PASS"], $_ENV["DB_TBLE"]);
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
@@ -22,7 +23,7 @@
 		returnResponseAsJson(dataArr: sanitizeErrorOut($res), err: $conn->connect_error);
 	} else {
 		# Running SQL statement.
-		$sqlStatement = $conn->prepare(getenv("LOGIN_SQL"));
+		$sqlStatement = $conn->prepare($_ENV["LOGIN_SQL"]);
 		$sqlStatement->bind_param("ss", $inData["login"], $inData["password"]);
 		$sqlStatement->execute();
 
@@ -36,7 +37,7 @@
 			returnResponseAsJson(dataArr: $res);
 		} else {
 
-			returnResponseAsJson(dataArr: sanitizeErrorOut($res), err: "NOT_FOUND");
+			returnResponseAsJson(dataArr: sanitizeErrorOut($res), err: "INVALID_LOGIN");
 		}
 
 		# Close all connections.
