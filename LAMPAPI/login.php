@@ -1,8 +1,8 @@
 <?php
 	# Imports.
-	require_once __DIR__ . '/vendor/autoload.php';
-	require_once . '_returnResponseAsJson.php'
-	require_once . ''
+	require_once __DIR__ . '/../vendor/autoload.php';
+	require_once __DIR__ . '/_returnResponseAsJson.php';
+	require_once __DIR__ . '/_sanitizeErrorOut.php';
 
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
@@ -47,7 +47,7 @@
 	}
 
 	# This function returns the json response.
-	function getRequestInfo() : stdClass
+	function getRequestInfo() : array
 	{
 		return json_decode(file_get_contents('php://input'), true);	
 	}
