@@ -14,7 +14,7 @@
 	
 	# Initializing database connection.
 	# TODO: Add credentials to .env.
-	$conn = new mysqli(getenv("HOST"), getenv("USER"), getenv("PASS"), getenv("TBLE"));
+	$conn = new mysqli(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASS"), getenv("DB_TBLE"));
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
