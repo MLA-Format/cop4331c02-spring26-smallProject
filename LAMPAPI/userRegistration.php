@@ -19,17 +19,26 @@
 	}
 	else
 	{
+		# SQL query used to check if a user with the username already exists.
 		$userCheckRes = $dbConn->execute_query($_ENV["DUP_USER_CHECK_SQL"], [$inData["username"]]);
+
+		# If statement to validate if user already exists or not.
 		if ($userCheckRes->num_rows == 1) {
+
 			returnResponseAsJson(err: "Username already exists.");
+		
 		} else {
+
 		$sqlStatement = $dbConn->prepare($_ENV["INSERT_USER_SQL"]);
 		# TODO: Add password hashing.
 		$sqlStatement->bind_param("ssss", $inData["firstNameRef"], $inData["lastNameRef"], $inData["username"], $inData["password"]);
 		$sqlStatement->execute();
+		
 		$sqlStatement->close();
 		$dbConn->close();
+		
 		returnResponseAsJson();
+		
 		}
 	}
 
