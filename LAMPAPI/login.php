@@ -32,7 +32,7 @@
 		{
 			$res["firstName"] = $row["firstName"];
 			$res["lastName"] = $row["lastName"];
-			$res["id"] = $row["id"];
+			$res["ID"] = $row["ID"];
 
 			returnResponseAsJson(dataArr: $res);
 		} else {
