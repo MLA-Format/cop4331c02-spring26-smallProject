@@ -13,7 +13,7 @@
 	$id = 0;
 
 	# Initializing database connection.
-	$conn = new mysqli(getenv("DB_HOST"), getenv("DB_USER"), getenv("DB_PASS"), getenv("DB_NAME"));
+	$conn = new mysqli($_ENV["DB_HOST"], $_ENV["DB_USER"], $_ENV["DB_PASS"], $_ENV["DB_TBLE"]);
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
