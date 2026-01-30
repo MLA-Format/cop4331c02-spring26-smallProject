@@ -11,7 +11,7 @@
 	$inData = getRequestInfo();
 
 	# Initializing variables.
-	$res = array("id"=>0, "firstName"=>"", "lastName"=>"");
+	$res = array("ID"=>0, "firstName"=>"", "lastName"=>"");
 	
 	# Initializing database connection.
 	# TODO: Add credentials to .env.
@@ -32,7 +32,7 @@
 		{
 			$res["firstName"] = $row["firstName"];
 			$res["lastName"] = $row["lastName"];
-			$res["id"] = $row["id"];
+			$res["ID"] = $row["ID"];
 
 			returnResponseAsJson(dataArr: $res);
 		} else {
