@@ -1,8 +1,7 @@
 <?php
 
-	require_once __DIR__ . '/../vendor/autoload.php';
-	require_once __DIR__ . '/_returnResponseAsJson.php'
-	require_once __DIR__ . '/_sanitizeErrorOut.php';
+	require_once __DIR__ . '/vendor/autoload.php';
+	require_once . '_returnResponseAsJson.php'
 	
 	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 	$dotenv->load();
@@ -18,7 +17,7 @@
 	$userID = 0;
 
 	# Initializing database connection.
-	$conn = new mysqli($_ENV["DB_HOST"], $_ENV["DB_USER"], $_ENV["DB_PASS"], $_ENV["DB_TBLE"]);
+	$conn = new mysqli(getenv("DATABASE_HOST"), getenv("DATABASE_USER"), getenv("DATABASE_PASS"), getenv("DATABASE_NAME"));
 
 	# If statement used to validate the connection.
 	if ($conn->connect_error)
