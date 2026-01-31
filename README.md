@@ -6,7 +6,6 @@
 - [x] Sign in page
 - [x] Login Page
 - [x] Landing Page
-- [ ] 
 ### Database
 - [x] Create database. (Gabriel)
 - [x] Create user table. (Gabriel)
@@ -60,16 +59,16 @@ gantt
   Create DB      :01-22-2026, 4d
   User table    :01-22-2026, 4d
   Contacts table :01-22-2026, 4d
-  Link contacts :crit, 01-13-2026, 1d
+  Link contacts :01-22-2026, 4d
   Admin user    :01-27-2026, 1d
   ERD                  :crit, 01-13-2026, 1d
   section Backend
   User create API    :01-22-2026, 7d
   User login API       :01-15-2026, 14d
-  Contact create API :01-23-2026, 6d
+  Contact create API :active, 01-23-2026, 8d
   Contact read API     :crit, 01-13-2026, 1d
   Contact update API   :crit, 01-13-2026, 1d
-  Contact delete API   :01-23-2026, 6d
+  Contact delete API   :active, 01-23-2026, 8d
   SwaggerHub   :crit, 01-13-2026, 1d
   PWD Hashing :crit, 01-13-2026, 1d
   SQL Injection :crit, 01-13-2026, 1d
@@ -82,12 +81,12 @@ gantt
   Demo         :crit, 01-13-2026, 1d
   Swagger demo      :crit, 01-13-2026, 1d
   section Etc
-  Bind to Domain :crit, 01-13-2026, 1d
-  Test phones       :crit, 01-13-2026, 1d
-  Test browsers   :crit, 01-13-2026, 1d
+  Bind to Domain :, 01-30-2026, 1d
+  Test on phones       :crit, 01-13-2026, 1d
+  Test on browsers   :crit, 01-13-2026, 1d
   Validate server   :crit, 01-13-2026, 1d
   Lighthouse    :crit, 01-13-2026, 1d
-  Check UCF  :crit, 01-13-2026, 1d
+  Check at UCF  :crit, 01-13-2026, 1d
   USB drive     :crit, 01-13-2026, 1d
   Submit Canvas     :crit, 01-13-2026, 1d
 
