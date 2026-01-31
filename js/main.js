@@ -154,8 +154,7 @@ function login() {
 				saveCookie();
 
 				// TODO: Add correct page html value.
-                console.log("yayyyyy");
-				//window.location.href = "index.html";
+				window.location.href = "ContactManager.html";
 			}
 		};
 		xhr.send(jsonPayload);
