@@ -1,3 +1,10 @@
+// TODO: Add actual prefix
+const urlPrefix = "http://137.184.179.151/LAMPAPI";
+const extension = 'php';
+
+let userId = 0;
+let firstName = "";
+let lastName = "";
 let firstNameRef = document.getElementById("firstName");
 let lastNameRef = document.getElementById("lastName");
 let usernameRef = document.getElementById("username");
@@ -21,13 +28,13 @@ let normalEyeStyle = () => {
 let normalHandStyle = () => {
     handL.style.cssText = `
         height: 2.81em;
-        top: 8.4em;
+        top: 8em;
         left: 7.5em;
         transform: rotate(0deg);
     `;
     handR.style.cssText = `
         height: 2.81em;
-        top: 8.4em;
+        top: 8em;
         right: 7.5em;
         transform: rotate(0deg);
     `;
@@ -101,18 +108,9 @@ document.addEventListener("click", (e) => {
 });
 
 
-
-// TODO: Add actual prefix
-const urlPrefix = 'http://x/LAMPAPI';
-const extension = 'php';
-
-let userId = 0;
-let firstName = "";
-let lastName = "";
-
 function login() {
 	console.log("LOGIN attempt");
-    console.log("Username:", username.value);
+    console.log("Username:", usernameRef.value);
     console.log("Password:", passwordRef.value);
 
 	userId = 0;
@@ -124,7 +122,7 @@ function login() {
 	let password = document.getElementById("password").value;
 	// TODO: Implement hash function here. Note: MD5 may not be secure.
 
-	document.getElementById("x").innerHTML = "";
+	document.getElementById("loginResult").innerHTML = "";
 
 	// TODO: Change password to be hashed value.
 	let tmp = { login: login, password: password };
@@ -132,7 +130,7 @@ function login() {
 	let jsonPayload = JSON.stringify(tmp);
 
 	// TODO: Add path for php login api.
-	let url = urlPrefix + '' + extension;
+	let url = urlPrefix + '/login.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -155,12 +153,12 @@ function login() {
 				saveCookie();
 
 				// TODO: Add correct page html value.
-				window.location.href = "";
+				window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
-		document.getElementById("x").innerHTML = err.message;
+		document.getElementById("loginResult").innerHTML = err.message;
 	}
 }
 
@@ -210,12 +208,67 @@ function readCookie() {
 }
 
 function addUser() {
-	console.log("SIGN UP attempt");
+    console.log("SIGN UP attempt");
     console.log("First:", firstNameRef.value);
     console.log("Last:", lastNameRef.value);
-    console.log("Username:", username.value);
-    console.log("Password:", password.value);
+    console.log("Username:", usernameRef.value);
+    console.log("Password:", passwordRef.value);
+
+    // Basic validation
+    if (!firstNameRef.value || !lastNameRef.value || !usernameRef.value || !passwordRef.value) {
+        document.getElementById("signupResult").innerHTML = "Please fill in all fields.";
+        return;
+    }
+
+    // Prepare payload
+    let payload = {
+        firstNameRef: firstNameRef.value.trim(),
+        lastNameRef: lastNameRef.value.trim(),
+        username: usernameRef.value.trim(),
+        password: passwordRef.value.trim() // You can hash it later if desired
+    };
+
+    let jsonPayload = JSON.stringify(payload);
+
+    // Construct URL to your PHP API
+    let url = urlPrefix + '/userRegistration.' + extension; // make sure your PHP file matches
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // Optional: show loading
+    document.getElementById("signupResult").innerHTML = "Creating user...";
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            try {
+                let response = JSON.parse(xhr.responseText);
+
+                if (this.status == 200) {
+                    if (response.err) {
+                        document.getElementById("signupResult").innerHTML = "Error: " + response.err;
+                    } else {
+                        document.getElementById("signupResult").innerHTML = "User created successfully!";
+                        // Optionally redirect to login page
+                        setTimeout(() => {
+                            window.location.href = "login.html";
+                        }, 1500);
+                    }
+                } else {
+                    document.getElementById("signupResult").innerHTML = "Server error: " + this.status;
+                }
+            } catch (e) {
+                document.getElementById("signupResult").innerHTML = "Invalid server response";
+                console.error(e);
+            }
+        }
+    };
+
+    // Send request
+    xhr.send(jsonPayload);
 }
+
 
 function addContact() {
 }

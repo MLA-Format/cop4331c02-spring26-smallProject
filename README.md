@@ -6,22 +6,25 @@
 - [x] Sign in page
 - [x] Login Page
 - [x] Landing Page
+- [ ] 
 ### Database
-- [ ] Create database. (Gabriel)
-- [ ] Create user table. (Gabriel)
-- [ ] Create contacts table (minimum data: name, email, phone, date).
-- [ ] Per contact, link to user using foreign key.
-- [ ] Create admin user (for APIs) (Gabriel)
+- [x] Create database. (Gabriel)
+- [x] Create user table. (Gabriel)
+- [x] Create contacts table (minimum data: name, email, phone, date).
+- [ ] Per contact, link to user using foreign key. (Gabriel)
+- [x] Create admin user (for APIs) (Gabriel) (1-27-26)
 - [ ] Entity relationship diagram (ERD)
 ### Backend
-- [ ] .js File (Mason - In Progress) (1/19 - ?)
-- [x] User creation/register API (Mason: 1/22 - 1/23)
-- [x] User login API (1/15 - 1/23) (Mason)
-- [ ] Contact creation API. (Adnan)
+- [ ] .js File (Emily/Mason/Michelin - In Progress) (1/19 - ?)
+- [x] User creation/register API (Mason: 1/22 - 1/29)
+- [x] User login API (1/15 - 1/29) (Mason)
+- [x] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
-- [ ] Contact delete API. (Adnan)
+- [x] Contact delete API. (Adnan)
 - [ ] SwaggerHub testing.
+- [ ] Password Hashing (Mason)
+- [ ] SQL Injection Protection (Mason)
 ### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
 - [ ] Members page
@@ -31,6 +34,7 @@
 - [ ] Project Demo
 - [ ] Swaggerhub demo of APIs (no more than 2)
 ### Etc.
+- [ ] Bind website to domain (Mason)
 - [ ] Test on phones.
 - [ ] Test on different browser pane sizes.
 - [ ] Validate functionality on server.
@@ -50,24 +54,25 @@ gantt
   Landing pg         :01-19-2026, 1d
   Bind to APIs :crit, 01-13-2026, 1d
   Delete confirm  :crit, 01-13-2026, 1d
-  Contact mgmt UI :active, 01-23-2026, 3d
+  Contact mgmt UI :active, 01-23-2026, 6d
+  .js File             :active, 01-20-2026, 9d
   section SQL
-  Create DB      :active, 01-22-2026, 4d
-  User table    :active, 01-22-2026, 4d
-  Contacts table :active, 01-22-2026, 4d
+  Create DB      :01-22-2026, 4d
+  User table    :01-22-2026, 4d
+  Contacts table :01-22-2026, 4d
   Link contacts :crit, 01-13-2026, 1d
-  Admin user    :active, 01-22-2026, 4d
+  Admin user    :01-27-2026, 1d
   ERD                  :crit, 01-13-2026, 1d
   section Backend
-  .js File             :active, 01-20-2026, 6d
-  User create API    :01-22-2026, 1d
-  User login API       :01-15-2026, 8d
-  Contact create API :active, 01-23-2026, 3d
+  User create API    :01-22-2026, 7d
+  User login API       :01-15-2026, 14d
+  Contact create API :01-23-2026, 6d
   Contact read API     :crit, 01-13-2026, 1d
   Contact update API   :crit, 01-13-2026, 1d
-  Contact delete API   :active, 01-23-2026, 3d
+  Contact delete API   :01-23-2026, 6d
   SwaggerHub   :crit, 01-13-2026, 1d
-  Encryption :crit, 01-13-2026, 1d
+  PWD Hashing :crit, 01-13-2026, 1d
+  SQL Injection :crit, 01-13-2026, 1d
   section Presentation
   Title pg           :crit, 01-13-2026, 1d
   Members pg         :crit, 01-13-2026, 1d
@@ -77,6 +82,7 @@ gantt
   Demo         :crit, 01-13-2026, 1d
   Swagger demo      :crit, 01-13-2026, 1d
   section Etc
+  Bind to Domain :crit, 01-13-2026, 1d
   Test phones       :crit, 01-13-2026, 1d
   Test browsers   :crit, 01-13-2026, 1d
   Validate server   :crit, 01-13-2026, 1d
