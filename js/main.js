@@ -1,5 +1,5 @@
 // TODO: Add actual prefix
-const urlPrefix = "http://sp.cop4331c02s26.malcock.com";
+const urlPrefix = "http://sp.cop4331c02s26.malcock.com/LAMPAPI";
 const extension = 'php';
 
 let userId = 0;
