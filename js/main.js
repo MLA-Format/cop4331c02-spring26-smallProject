@@ -142,6 +142,12 @@ function login() {
 				let jsonObj = JSON.parse(xhr.responseText);
 				userId = jsonObj.id;
 
+                if (jsonObj.error) {
+                    document.getElementById("loginResult").innerHTML =
+                        "Error: " + jsonObj.error;
+                    return;
+                }
+
 				if (userId < 1) {
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect.";
 					return;
