@@ -153,7 +153,8 @@ function login() {
 				saveCookie();
 
 				// TODO: Add correct page html value.
-				window.location.href = "index.html";
+                console.log("yayyyyy");
+				//window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);
