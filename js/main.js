@@ -122,7 +122,7 @@ function login() {
 	let password = document.getElementById("password").value;
 	// TODO: Implement hash function here. Note: MD5 may not be secure.
 
-	document.getElementById("loginResult2").innerHTML = "";
+	document.getElementById("loginResult").innerHTML = "";
 
 	// TODO: Change password to be hashed value.
 	let tmp = { login: login, password: password };
