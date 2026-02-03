@@ -24,11 +24,12 @@
 	} else {
 		# Running SQL statement.
 		$sqlStatement = $conn->prepare($_ENV["LOGIN_SQL"]);
-		$sqlStatement->bind_param("ss", $inData["login"], $inData["password"]);
+
+		$sqlStatement->bind_param("s", $inData["login"]);
 		$sqlStatement->execute();
 
-		# Checking SQL statement results.
-		if ($row = $sqlStatement->get_result()->fetch_assoc())
+		# Checking SQL statement results and that the returned password
+		if (($row = $sqlStatement->get_result()->fetch_assoc()) && password_verify($inData["password"], $row["password"]))
 		{
 			$res["firstName"] = $row["firstName"];
 			$res["lastName"] = $row["lastName"];
