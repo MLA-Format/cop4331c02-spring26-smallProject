@@ -172,7 +172,7 @@ function logout() {
 	window.location.href = "index.html";
 }
 
-// Saves a cookie that will be used for user validation.
+
 function saveCookie() {
 	let minutes = 20;
 	let date = new Date();
@@ -181,7 +181,7 @@ function saveCookie() {
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
-// Reads a cookie for user validation.
+
 function readCookie() {
 	userId = -1;
 	let data = document.cookie;
@@ -226,19 +226,17 @@ function addUser() {
         firstNameRef: firstNameRef.value.trim(),
         lastNameRef: lastNameRef.value.trim(),
         username: usernameRef.value.trim(),
-        password: passwordRef.value.trim() // You can hash it later if desired
+        password: passwordRef.value.trim() 
     };
 
     let jsonPayload = JSON.stringify(payload);
 
-    // Construct URL to your PHP API
-    let url = urlPrefix + '/userRegistration.' + extension; // make sure your PHP file matches
+    let url = urlPrefix + '/userRegistration.' + extension; 
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    // Optional: show loading
     document.getElementById("signupResult").innerHTML = "Creating user...";
 
     xhr.onreadystatechange = function() {
@@ -251,7 +249,7 @@ function addUser() {
                         document.getElementById("signupResult").innerHTML = "Error: " + response.err;
                     } else {
                         document.getElementById("signupResult").innerHTML = "User created successfully!";
-                        // Optionally redirect to login page
+                    
                         setTimeout(() => {
                             window.location.href = "login.html";
                         }, 1500);
@@ -266,7 +264,6 @@ function addUser() {
         }
     };
 
-    // Send request
     xhr.send(jsonPayload);
 }
 
