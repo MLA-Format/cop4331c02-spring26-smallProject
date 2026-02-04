@@ -4,7 +4,8 @@
 - [ ] Delete confirmation for contact deletion.
 - [ ] Sign in page (Emily)
 - [ ] Login Page (Emily)
-- [ ] Landing Page (Michelin)
+- [ ] Landing Page (Emily)
+- [ ] Contact Management Page (Michelin)
 ### Database
 - [x] Create database. (Gabriel)
 - [x] Create user table. (Gabriel)
