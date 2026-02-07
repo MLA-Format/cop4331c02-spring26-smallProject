@@ -65,9 +65,9 @@ gantt
   User create API    :01-22-2026, 7d
   User login API       :01-15-2026, 14d
   Contact create API :01-23-2026, 13d
-  Contact read API     :crit, 01-13-2026, 1d
-  Contact update API   :crit, 01-13-2026, 1d
-  Contact delete API   :active, 01-23-2026, 15d
+  Contact read API     :active, 02-07-2026, 1d
+  Contact update API   :active, 02-07-2026, 1d
+  Contact delete API   :01-23-2026, 15d
   SwaggerHub   :crit, 01-13-2026, 1d
   PWD Hashing :02-03-2026, 4d
   section Presentation
