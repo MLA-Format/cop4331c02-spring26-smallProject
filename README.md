@@ -69,7 +69,7 @@ gantt
   Contact update API   :crit, 01-13-2026, 1d
   Contact delete API   :active, 01-23-2026, 15d
   SwaggerHub   :crit, 01-13-2026, 1d
-  PWD Hashing :01-03-2026, 4d
+  PWD Hashing :02-03-2026, 4d
   section Presentation
   Title pg           :crit, 01-13-2026, 1d
   Members pg         :crit, 01-13-2026, 1d
