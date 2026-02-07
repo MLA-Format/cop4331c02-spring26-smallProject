@@ -1,6 +1,6 @@
 <?php
 
-        require_once __DIR__ . '/vendor/autoload.php';
+        require_once __DIR__ . '/../vendor/autoload.php';
         require_once __DIR__ . '/_returnResponseAsJson.php';
         require_once __DIR__ . '/_sanitizeErrorOut.php';
 
@@ -63,6 +63,4 @@
         {
                 return json_decode(file_get_contents('php://input'), true);
         }
-
-		#testing testing
 ?>
