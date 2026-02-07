@@ -50,8 +50,8 @@ gantt
   Login pg           :active, 01-19-2026, 19d
   Sign in pg         :active, 01-19-2026, 19d
   Landing pg         :active, 01-19-2026, 19d
-  Contact pg         :active, 01-27-2026, 15d
-  Bind to APIs :crit, 01-13-2026, 1d
+  Contact pg         :active, 01-27-2026, 11d
+  Bind to APIs :active, 01-29-2026, 9d
   Delete confirm  :crit, 01-13-2026, 1d
   .js File             :active, 01-20-2026, 9d
   section SQL
