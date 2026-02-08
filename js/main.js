@@ -246,8 +246,9 @@ function addUser() {
 
                 if (response.err || response.error) {
                     document.getElementById("signupResult").innerHTML =
-                        "Error: " + (response.err || response.error);
-}
+                        "Error: " + (response.err || response.error);5
+                    return;
+                }
 
                 if (this.status === 200) {
                     document.getElementById("signupResult").innerHTML =
