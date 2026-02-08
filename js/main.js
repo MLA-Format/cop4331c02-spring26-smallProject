@@ -239,26 +239,31 @@ function addUser() {
 
     document.getElementById("signupResult").innerHTML = "Creating user...";
 
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
             try {
-                let response = JSON.parse(xhr.responseText);
+                let response = JSON.parse(this.responseText);
 
-                if (this.status == 200) {
-                    if (response.err) {
-                        document.getElementById("signupResult").innerHTML = "Error: " + response.err;
-                    } else {
-                        document.getElementById("signupResult").innerHTML = "User created successfully!";
-                    
-                        setTimeout(() => {
-                            window.location.href = "login.html";
-                        }, 1500);
-                    }
+                if (response.err) {
+                    document.getElementById("signupResult").innerHTML =
+                        "Error: " + response.err;
+                    return;
+                }
+
+                if (this.status === 200) {
+                    document.getElementById("signupResult").innerHTML =
+                        "User created successfully!";
+
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1500);
                 } else {
-                    document.getElementById("signupResult").innerHTML = "Server error: " + this.status;
+                    document.getElementById("signupResult").innerHTML =
+                        "Server error: " + this.status;
                 }
             } catch (e) {
-                document.getElementById("signupResult").innerHTML = "Invalid server response";
+                document.getElementById("signupResult").innerHTML =
+                    "Invalid server response";
                 console.error(e);
             }
         }
