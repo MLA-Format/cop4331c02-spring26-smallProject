@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///Users/saints/Desktop/ContactManager.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>ContactManager</title>
+
+    <!--
+    Functions needed in code.js:
+    - addContact()
+    - searchContact()
+    - editContact()
+    - deleteContact()
+    -->
+    <script type="text/javascript" src="file:///Users/saints/Desktop/js/code.js"></script>
+    <link href="file:///Users/saints/Desktop/css/styles.css" rel="stylesheet">	
+    
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            readCookie();
+        }, false);
+        
+        function openAddContactModal() {
+            document.getElementById('addContactModal').style.display = 'block';
+        }
+        
+        function closeAddContactModal() {
+            document.getElementById('addContactModal').style.display = 'none';
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phoneNumber').value = '';
+        }
+        
+        function submitNewContact() {
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var email = document.getElementById('email').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            
+            if (firstName === '' || lastName === '' || email === '' || phoneNumber === '') {
+                alert('Please fill in all fields!');
+                return;
+            }
+            
+            //*********
+            addContact();
+            
+            closeAddContactModal();
+        }
+///might need additional code 
+        function openEditContactModal(contactId, firstName, lastName, email, phoneNumber) {
+            document.getElementById('editContactModal').style.display = 'block';
+            document.getElementById('editContactId').value = contactId;
+            document.getElementById('editFirstName').value = firstName;
+            document.getElementById('editLastName').value = lastName;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editPhoneNumber').value = phoneNumber;
+        }
+        
+        function closeEditContactModal() {
+            document.getElementById('editContactModal').style.display = 'none';
+        }
+        
+        function submitEditContact() {
+            var contactId = document.getElementById('editContactId').value;
+            var firstName = document.getElementById('editFirstName').value;
+            var lastName = document.getElementById('editLastName').value;
+            var email = document.getElementById('editEmail').value;
+            var phoneNumber = document.getElementById('editPhoneNumber').value;
+            
+            if (firstName === '' || lastName === '' || email === '' || phoneNumber === '') {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            
+            //*****
+            editContact(); 
+            
+            closeEditContactModal();
+        }
+        
+        window.onclick = function(event) {
+            var addModal = document.getElementById('addContactModal');
+            var editModal = document.getElementById('editContactModal');
+            if (event.target == addModal) {
+                closeAddContactModal();
+            }
+            if (event.target == editModal) {
+                closeEditContactModal();
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('images/Forest_background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: white;
+            width: 600px;
+            max-width: 90%;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        #title {
+            margin: 0 0 30px 0;
+            font-size: 28px;
+            color: #333;
+            text-align: left;
+        }
+        
+        #loggedInDiv {
+            text-align: right;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        #userName {
+            font-weight: bold;
+            color: #8B4513;
+        }
+        
+        #accessUIDiv {
+            margin-top: 20px;
+        }
+        
+        input[type="text"], input[type="email"] {
+            width: 70%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        input[type="text"]:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: #A0826D;
+        }
+        
+        .buttons {
+            background-color: #A0826D;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .buttons:hover {
+            background-color: #8B6F47;
+        }
+        
+        #logoutButton {
+            background-color: #f44336;
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+        
+        #logoutButton:hover {
+            background-color: #da190b;
+        }
+        
+        #SearchResult, #AddResult {
+            display: block;
+            margin: 15px 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        #ContactList {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 100px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+        }
+        
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .contact-info {
+            flex-grow: 1;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .edit-btn {
+            background-color: #C19A6B;
+            color: white;
+        }
+        
+        .edit-btn:hover {
+            background-color: #A67C52;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background-color: #da190b;
+        }
+        
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            max-width: 90%; 
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #A0826D;
+        }
+        
+        .submit-button {
+            background-color: #A0826D;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background-color: #8B6F47;
+        }
+        
+        .cancel-button {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .cancel-button:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="title">Contact Manager</h1>
+
+    <div id="loggedInDiv">
+        <span id="userName"></span><br>
+        <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+    </div>
+
+    <div id="accessUIDiv">
+        <input type="text" id="searchText" placeholder="Search For Contact">
+        <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();">Search</button><br>
+        <span id="SearchResult"></span>
+        <p id="ContactList"></p>
+
+        <button type="button" id="addColorButton" class="buttons" onclick="openAddContactModal();"> Add New Contact </button><br>
+        <span id="AddResult"></span>
+    </div>
+</div>
+
+<div id="addContactModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddContactModal();">×</span>
+        
+        <h2>Add New Contact</h2>
+        
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="Enter first name">
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Enter last name">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email">
+        </div>
+        
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        </div>
+        
+        <button type="button" class="submit-button" onclick="submitNewContact();">
+            Add Contact
+        </button>
+        
+        <button type="button" class="cancel-button" onclick="closeAddContactModal();">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div id="editContactModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditContactModal();">×</span>
+        
+        <h2>Edit Contact</h2>
+        
+        <input type="hidden" id="editContactId">
+        
+        <div class="form-group">
+            <label for="editFirstName">First Name:</label>
+            <input type="text" id="editFirstName" placeholder="Enter first name">
+        </div>
+        
+        <div class="form-group">
+            <label for="editLastName">Last Name:</label>
+            <input type="text" id="editLastName" placeholder="Enter last name">
+        </div>
+        
+        <div class="form-group">
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail" placeholder="Enter email">
+        </div>
+        
+        <div class="form-group">
+            <label for="editPhoneNumber">Phone Number:</label>
+            <input type="text" id="editPhoneNumber" placeholder="Enter phone number">
+        </div>
+        
+        <button type="button" class="submit-button" onclick="submitEditContact();">
+            Update Contact
+        </button>
+        
+        <button type="button" class="cancel-button" onclick="closeEditContactModal();">
+            Cancel
+        </button>
+    </div>
+</div>
+
+
+
+</body></html>
