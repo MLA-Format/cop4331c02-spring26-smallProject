@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+body {
+    background-color: #ffe1a4ff;
+    background-image: url('../images/Forest background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;  
+    min-height: 100vh;
+    padding: 2em;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    clear: both; 
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
+}
+
+#signupButton {
+    width: 20%;
+    padding: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    border: none;
+    background: #c9184a;
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+
+h1 {
+    font-size: 3em;
+    color: #FFD700; 
+    margin-bottom: 0.3em;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h6 {
+    font-size: 1em;
+    margin-bottom: 2em;
+}
+
+
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    h1 { font-size: 2em; }
+    h3 { font-size: 1.2em; }
+    button { padding: 0.6em 1.5em; font-size: 0.9em; }
+}
