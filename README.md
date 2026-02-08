@@ -15,15 +15,14 @@
 - [ ] Entity relationship diagram (ERD)
 ### Backend
 - [ ] .js File (Emily/Mason/Michelin - In Progress) (1/19 - ?)
-- [x] User creation/register API (Mason: 1/22 - 1/29)
-- [x] User login API (1/15 - 1/29) (Mason)
+- [x] User creation/register API (Mason)
+- [x] User login API (Mason)
 - [x] Contact creation API. (Adnan)
 - [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
 - [ ] Contact update API. (Adnan)
 - [x] Contact delete API. (Adnan)
 - [ ] SwaggerHub testing.
 - [ ] Password Hashing (Mason)
-- [ ] SQL Injection Protection (Mason)
 ### Presentation (More information on assignment description on Canvas)
 - [ ] Title page
 - [ ] Members page
@@ -33,11 +32,12 @@
 - [ ] Project Demo
 - [ ] Swaggerhub demo of APIs (no more than 2)
 ### Etc.
-- [ ] Bind website to domain (Mason)
+- [x] Bind website to domain (Mason)
 - [ ] Test on phones.
 - [ ] Test on different browser pane sizes.
 - [ ] Validate functionality on server.
 - [ ] Lighthouse report.
+- [ ] Color Pallete
 - [ ] Check website on UCF campus.
 - [ ] Add slideshow + all supporting media to USB drive.
 - [ ] Submit all deliverables on Canvas.
@@ -48,10 +48,11 @@ gantt
   title Small Project Gantt Chart
   dateFormat MM-DD-YYYY
   section Frontend
-  Login pg           :active, 01-19-2026, 12d
-  Sign in pg         :active, 01-19-2026, 12d
-  Landing pg         :active, 01-27-2026, 4d
-  Bind to APIs :crit, 01-13-2026, 1d
+  Login pg           :active, 01-19-2026, 19d
+  Sign in pg         :active, 01-19-2026, 19d
+  Landing pg         :active, 01-19-2026, 19d
+  Contact pg         :active, 01-27-2026, 11d
+  Bind to APIs :active, 01-29-2026, 9d
   Delete confirm  :crit, 01-13-2026, 1d
   .js File             :active, 01-20-2026, 9d
   section SQL
@@ -60,17 +61,16 @@ gantt
   Contacts table :01-22-2026, 4d
   Link contacts :01-22-2026, 4d
   Admin user    :01-27-2026, 1d
-  ERD                  :crit, 01-13-2026, 1d
+  ERD                  :02-2-2026, 2d
   section Backend
   User create API    :01-22-2026, 7d
   User login API       :01-15-2026, 14d
-  Contact create API :active, 01-23-2026, 8d
-  Contact read API     :crit, 01-13-2026, 1d
-  Contact update API   :crit, 01-13-2026, 1d
-  Contact delete API   :active, 01-23-2026, 8d
+  Contact create API :01-23-2026, 13d
+  Contact read API     :active, 01-27-2026, 11d
+  Contact update API   :active, 01-27-2026, 11d
+  Contact delete API   :01-23-2026, 15d
   SwaggerHub   :crit, 01-13-2026, 1d
-  PWD Hashing :crit, 01-13-2026, 1d
-  SQL Injection :crit, 01-13-2026, 1d
+  PWD Hashing :02-03-2026, 4d
   section Presentation
   Title pg           :crit, 01-13-2026, 1d
   Members pg         :crit, 01-13-2026, 1d
@@ -80,11 +80,12 @@ gantt
   Demo         :crit, 01-13-2026, 1d
   Swagger demo      :crit, 01-13-2026, 1d
   section Etc
-  Bind to Domain :, 01-30-2026, 1d
+  Bind to Domain :01-30-2026, 1d
   Test on phones       :crit, 01-13-2026, 1d
   Test on browsers   :crit, 01-13-2026, 1d
   Validate server   :crit, 01-13-2026, 1d
   Lighthouse    :crit, 01-13-2026, 1d
+  Color Pallete    :crit, 01-13-2026, 1d
   Check at UCF  :crit, 01-13-2026, 1d
   USB drive     :crit, 01-13-2026, 1d
   Submit Canvas     :crit, 01-13-2026, 1d
