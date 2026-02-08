@@ -244,11 +244,10 @@ function addUser() {
             try {
                 let response = JSON.parse(this.responseText);
 
-                if (response.err) {
+                if (response.err || response.error) {
                     document.getElementById("signupResult").innerHTML =
-                        "Error: " + response.err;
-                    return;
-                }
+                        "Error: " + (response.err || response.error);
+}
 
                 if (this.status === 200) {
                     document.getElementById("signupResult").innerHTML =
