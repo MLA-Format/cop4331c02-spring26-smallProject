@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <button type="button" id="signupButton" onclick="window.location.href='index.html';">
+        Back to Landing Page
+    </button>
+    
+    <div class="container">
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Username here..">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Password here..">
+            <span id="loginResult" class="loginResult"></span>
+            <button type="button" onClick="login()">Login</button>
+            <br>
+            <h5 class="account">
+                Don’t have an account?
+                <a href="signup.html" class="signup-link">Sign Up</a>
+            </h5>
+            
+        </form>
+        <div class="ear-1"></div>
+        <div class="ear-r"></div>
+        <div class="monkey-face">
+            <div class="face-mask">
+                <div class="mask-left"></div>
+                <div class="mask-right"></div>
+                <div class="mask-bottom"></div>
+            </div>
+            <div class="blush-1"></div>
+            <div class="blush-r"></div>
+            <div class="eye-1">
+                <div class="eyeball-1"></div>
+            </div>
+            <div class="eye-r">
+                <div class="eyeball-r"></div>
+            </div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+        </div>
+        <div class="hand-1"></div>
+        <div class="hand-r"></div>
+        <div class="paw-1"></div>
+        <div class="paw-r"></div>
+    </div>
+
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
