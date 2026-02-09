@@ -2,9 +2,9 @@
 ### Front-end (List not complete)
 - [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
 - [ ] Delete confirmation for contact deletion.
-- [ ] Sign in page (Emily)
-- [ ] Login Page (Emily)
-- [ ] Landing Page (Emily)
+- [x] Sign in page (Emily)
+- [x] Login Page (Emily)
+- [x] Landing Page (Emily)
 - [ ] Contact Management Page (Michelin)
 ### Database
 - [x] Create database. (Gabriel)
@@ -48,10 +48,10 @@ gantt
   title Small Project Gantt Chart
   dateFormat MM-DD-YYYY
   section Frontend
-  Login pg           :active, 01-19-2026, 19d
-  Sign in pg         :active, 01-19-2026, 19d
-  Landing pg         :active, 01-19-2026, 19d
-  Contact pg         :active, 01-27-2026, 11d
+  Login pg           :active, 01-19-2026, 20d
+  Sign in pg         :active, 01-19-2026, 20d
+  Landing pg         :active, 01-19-2026, 20d
+  Contact pg         :active, 01-27-2026, 12d
   Bind to APIs :active, 01-29-2026, 9d
   Delete confirm  :crit, 01-13-2026, 1d
   .js File             :active, 01-20-2026, 9d
@@ -66,8 +66,8 @@ gantt
   User create API    :01-22-2026, 7d
   User login API       :01-15-2026, 14d
   Contact create API :01-23-2026, 13d
-  Contact read API     :active, 01-27-2026, 11d
-  Contact update API   :active, 01-27-2026, 11d
+  Contact read API     :active, 01-27-2026, 12d
+  Contact update API   :active, 01-27-2026, 12d
   Contact delete API   :01-23-2026, 15d
   SwaggerHub   :crit, 01-13-2026, 1d
   PWD Hashing :02-03-2026, 4d
