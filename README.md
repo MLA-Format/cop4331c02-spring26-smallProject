@@ -1,56 +1,12 @@
 # Todo:
-### Front-end (List not complete)
-- [ ] Bind frontend to APIs. (Consult SwaggerHub documentation)
-- [ ] Delete confirmation for contact deletion.
-- [x] Sign in page (Emily)
-- [x] Login Page (Emily)
-- [x] Landing Page (Emily)
-- [ ] Contact Management Page (Michelin)
-### Database
-- [x] Create database. (Gabriel)
-- [x] Create user table. (Gabriel)
-- [x] Create contacts table (minimum data: name, email, phone, date).
-- [ ] Per contact, link to user using foreign key. (Gabriel)
-- [x] Create admin user (for APIs) (Gabriel) (1-27-26)
-- [ ] Entity relationship diagram (ERD)
-### Backend
-- [ ] .js File (Emily/Mason/Michelin - In Progress) (1/19 - ?)
-- [x] User creation/register API (Mason)
-- [x] User login API (Mason)
-- [x] Contact creation API. (Adnan)
-- [ ] Contact read API + contact search API w/ partial match (Cannot cache all results) (Adnan)
-- [ ] Contact update API. (Adnan)
-- [x] Contact delete API. (Adnan)
-- [ ] SwaggerHub testing.
-- [ ] Password Hashing (Mason)
-### Presentation (More information on assignment description on Canvas)
-- [ ] Title page
-- [ ] Members page
-- [ ] Project description (What it is, how it was developed, etc.)
-- [ ] Required charts (Gantt, Use Case Diagram, ERD)
-- [ ] What did/didn't go well.
-- [ ] Project Demo
-- [ ] Swaggerhub demo of APIs (no more than 2)
-### Etc.
-- [x] Bind website to domain (Mason)
-- [ ] Test on phones.
-- [ ] Test on different browser pane sizes.
-- [ ] Validate functionality on server.
-- [ ] Lighthouse report.
-- [ ] Color Pallete
-- [ ] Check website on UCF campus.
-- [ ] Add slideshow + all supporting media to USB drive.
-- [ ] Submit all deliverables on Canvas.
-
-
 ```mermaid
 gantt
   title Small Project Gantt Chart
   dateFormat MM-DD-YYYY
   section Frontend
-  Login pg           :active, 01-19-2026, 20d
-  Sign in pg         :active, 01-19-2026, 20d
-  Landing pg         :active, 01-19-2026, 20d
+  Login pg           :01-19-2026, 20d
+  Sign in pg         :01-19-2026, 20d
+  Landing pg         :01-19-2026, 20d
   Contact pg         :active, 01-27-2026, 12d
   Bind to APIs :active, 01-29-2026, 9d
   Delete confirm  :crit, 01-13-2026, 1d
@@ -66,19 +22,19 @@ gantt
   User create API    :01-22-2026, 7d
   User login API       :01-15-2026, 14d
   Contact create API :01-23-2026, 13d
-  Contact read API     :active, 01-27-2026, 12d
-  Contact update API   :active, 01-27-2026, 12d
+  Contact read API     :01-27-2026, 14d
+  Contact update API   :01-27-2026, 14d
   Contact delete API   :01-23-2026, 15d
-  SwaggerHub   :crit, 01-13-2026, 1d
   PWD Hashing :02-03-2026, 4d
   section Presentation
   Title pg           :crit, 01-13-2026, 1d
-  Members pg         :crit, 01-13-2026, 1d
+  Members pg         :02-09-2026, 1d
   Project desc  :crit, 01-13-2026, 1d
-  Charts      :crit, 01-13-2026, 1d
+  Charts      :active, 02-09-2026, 2d
   What went well :crit, 01-13-2026, 1d
   Demo         :crit, 01-13-2026, 1d
-  Swagger demo      :crit, 01-13-2026, 1d
+  Swagger demo      :active, 02-10-2026, 1d
+  Formatting  :crit, 01-13-2026, 1d
   section Etc
   Bind to Domain :01-30-2026, 1d
   Test on phones       :crit, 01-13-2026, 1d
