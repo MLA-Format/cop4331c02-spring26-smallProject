@@ -30,8 +30,11 @@
 		} else {
 
 		$sqlStatement = $dbConn->prepare($_ENV["INSERT_USER_SQL"]);
-		# TODO: Add password hashing.
-		$sqlStatement->bind_param("ssss", $inData["firstNameRef"], $inData["lastNameRef"], $inData["username"], $inData["password"]);
+
+		# Hashing password.
+		$hashedPassword = password_hash($inData["password"], PASSWORD_ARGON2ID);
+
+		$sqlStatement->bind_param("ssss", $inData["firstNameRef"], $inData["lastNameRef"], $inData["username"], $hashedPassword);
 		$sqlStatement->execute();
 		
 		$sqlStatement->close();
