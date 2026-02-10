@@ -32,7 +32,7 @@
 		returnResponseAsJson(sanitizeErrorOut(compact('userID', 'name')), $conn->connect_error);
 	} else {
 		# Running SQL statement to search by concatenated firstName and lastName for specific userID
-		$sqlStatement = $conn->prepare("SELECT ID, firstName, lastName, phone, email, userID FROM Contacts WHERE userID = ? AND CONCAT(firstName, lastName) LIKE ?");
+		$sqlStatement = $conn->prepare("SELECT ID, firstName, lastName, phone, email, userID FROM Contacts WHERE userID = ? AND CONCAT(firstName, ' ', lastName) LIKE ?");
 		
 		if (!$sqlStatement) {
 			returnResponseAsJson(sanitizeErrorOut(compact('userID', 'name')), "PREPARE_FAILED: " . $conn->error);
