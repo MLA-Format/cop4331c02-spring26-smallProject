@@ -396,43 +396,38 @@ function searchContact()
 
                 document.getElementById("SearchResult").innerHTML = "";
 
+                // After building each contact item
                 let contactListHTML = "";
-
-                for (let i = 0; i < contacts.length; i++) {
-                    const c = contacts[i];
+                contacts.forEach(contact => {
                     contactListHTML += `
-                        <div class="contact-item">
+                        <div class="contact-item" data-id="${contact.ID}">
                             <div class="contact-info">
-                                <strong>${c.FirstName} ${c.LastName}</strong><br>
-                                📧 ${c.Email}<br>
-                                📞 ${c.Phone}
+                                <strong>${contact.firstName} ${contact.lastName}</strong><br>
+                                📧 ${contact.email}<br>
+                                📞 ${contact.phone}
                             </div>
-
                             <div class="dropdown">
-                                <button class="dots-btn" onclick="toggleDropdown(this)">⋮</button>
-
+                                <button class="dots-btn">⋮</button>
                                 <div class="dropdown-content">
-                                    <button onclick="openEditContactModal(
-                                        ${c.ID},
-                                        '${c.FirstName.replace(/'/g, "\\'")}',
-                                        '${c.LastName.replace(/'/g, "\\'")}',
-                                        '${c.Email.replace(/'/g, "\\'")}',
-                                        '${c.Phone.replace(/'/g, "\\'")}'
-                                    )">
-                                        Edit
-                                    </button>
-
-                                    <button onclick="deleteContact(${c.ID})">
-                                        Delete
-                                    </button>
+                                    <button class="edit-btn">Edit</button>
+                                    <button class="delete-btn">Delete</button>
                                 </div>
                             </div>
                         </div>
                     `;
-                }
-
+                });
 
                 document.getElementById("ContactList").innerHTML = contactListHTML;
+
+                // Add event listeners dynamically
+                document.querySelectorAll(".delete-btn").forEach(btn => {
+                    btn.addEventListener("click", function(e) {
+                        e.stopPropagation(); // prevent dropdown closing
+                        const contactId = this.closest(".contact-item").dataset.id;
+                        deleteContact(contactId);
+                    });
+                });
+
 
                 document.getElementById("expandResultsBtn").style.display = "inline-block";
             }
