@@ -450,48 +450,57 @@ function searchContact()
 function deleteContact() {
 }
 
-async function editContact(id, firstName, lastName, email, phone) {
-    try {
-        const body = {
+async function editContact(id, firstName, lastName, email, phone)
+{
+    try
+    {
+        const tmp = {
             id: parseInt(id),
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phone
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            email: email.trim(),
+            phone: phone.trim()
         };
 
-        const response = await fetch("api/updateContact.php", {
+        const jsonPayload = JSON.stringify(tmp);
+
+        const url = urlPrefix + "/updateContact." + extension;
+
+        const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=UTF-8"
             },
-            body: JSON.stringify(body)
+            body: jsonPayload
         });
 
         const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error("Server error");
+        if (!response.ok)
+        {
+            throw new Error("HTTP error " + response.status);
         }
 
-        if (data.error) {
+        if (data.error)
+        {
             alert("Update failed: " + data.error);
             return;
         }
 
-        // Success
+        // ✅ Success
         alert("Contact updated successfully!");
 
         closeEditContactModal();
 
-        // Refresh search results
-        searchContact();
-
-    } catch (err) {
+        searchContact(); // refresh list
+    }
+    catch (err)
+    {
         console.error("Edit Contact Error:", err);
-        alert("Could not update contact. Try again.");
+        alert("Could not update contact.");
     }
 }
+
 
 
 
