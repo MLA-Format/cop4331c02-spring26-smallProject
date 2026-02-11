@@ -370,6 +370,7 @@ function searchContact()
 
     document.getElementById("SearchResult").innerHTML = "Searching...";
     document.getElementById("ContactList").innerHTML = "";
+    document.getElementById("expandResultsBtn").style.display = "none"; // hide by default
 
     xhr.onreadystatechange = function ()
     {
@@ -431,6 +432,9 @@ function searchContact()
                 }
 
                 document.getElementById("ContactList").innerHTML = contactListHTML;
+
+                // Show Expand Results button since we have contacts
+                document.getElementById("expandResultsBtn").style.display = "inline-block";
             }
             catch (err)
             {

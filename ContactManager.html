@@ -109,11 +109,8 @@
     <div id="accessUIDiv">
         <input type="text" id="searchText" placeholder="Search For Contact">
         <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();">Search</button><br>
-        <span id="SearchResult">
-            <button type="button" class="buttons" onclick="openResultsModal()">
-                Expand Results
-            </button>
-        </span>
+        <span id="SearchResult"></span>
+
         <p id="ContactList"></p>
 
         <button type="button" id="addColorButton" class="buttons" onclick="openAddContactModal();"> Add New Contact </button><br>
@@ -203,6 +200,9 @@
     </div>
 </div>
 
+<button type="button" id="expandResultsBtn" class="buttons" style="display: none;" onclick="openResultsModal()">
+            Expand Results
+</button>
 
 
 </body></html>
