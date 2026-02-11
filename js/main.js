@@ -339,7 +339,92 @@ function addContact()
 }
 
 
-function searchContact() {
+function searchContact()
+{
+    let search = document.getElementById("searchText").value.trim();
+
+    let tmp = {
+        userID: userId,
+        name: search
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlPrefix + '/searchContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    document.getElementById("SearchResult").innerHTML = "Searching...";
+    document.getElementById("ContactList").innerHTML = "";
+
+    xhr.onreadystatechange = function ()
+    {
+        if (this.readyState === 4)
+        {
+            try
+            {
+                let jsonObject = JSON.parse(this.responseText);
+
+                if (jsonObject.error && jsonObject.error !== "")
+                {
+                    document.getElementById("SearchResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                let contacts = jsonObject.results;
+
+                if (contacts.length === 0)
+                {
+                    document.getElementById("SearchResult").innerHTML = "No Contacts Found.";
+                    return;
+                }
+
+                document.getElementById("SearchResult").innerHTML = "";
+                
+                let contactListHTML = "";
+
+                for (let i = 0; i < contacts.length; i++)
+                {
+                    contactListHTML += `
+                        <div class="contact-item">
+                            <div class="contact-info">
+                                <strong>${contacts[i].firstName} ${contacts[i].lastName}</strong><br>
+                                📧 ${contacts[i].email}<br>
+                                📞 ${contacts[i].phone}
+                            </div>
+                            <div class="contact-actions">
+                                <button class="action-btn edit-btn" 
+                                    onclick="openEditContactModal(
+                                        ${contacts[i].ID},
+                                        '${contacts[i].firstName}',
+                                        '${contacts[i].lastName}',
+                                        '${contacts[i].email}',
+                                        '${contacts[i].phone}'
+                                    )">
+                                    Edit
+                                </button>
+                                <button class="action-btn delete-btn" 
+                                    onclick="deleteContact(${contacts[i].ID})">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                document.getElementById("ContactList").innerHTML = contactListHTML;
+            }
+            catch (err)
+            {
+                document.getElementById("SearchResult").innerHTML = "Search failed.";
+                console.error(err);
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
 }
 
 function deleteContact() {
