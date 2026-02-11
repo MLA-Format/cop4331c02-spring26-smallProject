@@ -223,10 +223,10 @@ function addUser() {
 
     // Prepare payload
     let payload = {
-        firstName: firstNameRef.value.trim(),
-        lastName: lastNameRef.value.trim(),
-        login: usernameRef.value.trim(),
-        password: passwordRef.value.trim()
+        firstNameRef: firstNameRef.value.trim(),
+        lastNameRef: lastNameRef.value.trim(),
+        username: usernameRef.value.trim(),
+        password: passwordRef.value.trim() 
     };
 
     let jsonPayload = JSON.stringify(payload);
