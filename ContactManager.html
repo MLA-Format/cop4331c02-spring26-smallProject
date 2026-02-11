@@ -66,23 +66,20 @@
         }
         
         function submitEditContact() {
-            var contactId = document.getElementById('editContactId').value;
-            var firstName = document.getElementById('editFirstName').value;
-            var lastName = document.getElementById('editLastName').value;
-            var email = document.getElementById('editEmail').value;
-            var phoneNumber = document.getElementById('editPhoneNumber').value;
-            
-            if (firstName === '' || lastName === '' || email === '' || phoneNumber === '') {
+            const contactId = document.getElementById('editContactId').value;
+            const firstName = document.getElementById('editFirstName').value.trim();
+            const lastName = document.getElementById('editLastName').value.trim();
+            const email = document.getElementById('editEmail').value.trim();
+            const phone = document.getElementById('editPhoneNumber').value.trim();
+
+            if (!firstName || !lastName || !email || !phone) {
                 alert('Please fill in all fields!');
                 return;
             }
 
-            
-            //*****
-            editContact(); 
-            
-            closeEditContactModal();
+            editContact(contactId, firstName, lastName, email, phone);
         }
+
         
         window.onclick = function(event) {
             var addModal = document.getElementById('addContactModal');
