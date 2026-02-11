@@ -398,14 +398,14 @@ function searchContact()
 
                 let contactListHTML = "";
 
-                for (let i = 0; i < contacts.length; i++)
-                {
+                for (let i = 0; i < contacts.length; i++) {
+                    const c = contacts[i];
                     contactListHTML += `
                         <div class="contact-item">
                             <div class="contact-info">
-                                <strong>${contacts[i].firstName} ${contacts[i].lastName}</strong><br>
-                                📧 ${contacts[i].email}<br>
-                                📞 ${contacts[i].phone}
+                                <strong>${c.FirstName} ${c.LastName}</strong><br>
+                                📧 ${c.Email}<br>
+                                📞 ${c.Phone}
                             </div>
 
                             <div class="dropdown">
@@ -413,16 +413,16 @@ function searchContact()
 
                                 <div class="dropdown-content">
                                     <button onclick="openEditContactModal(
-                                        ${contacts[i].ID},
-                                        '${contacts[i].firstName}',
-                                        '${contacts[i].lastName}',
-                                        '${contacts[i].email}',
-                                        '${contacts[i].phone}'
+                                        ${c.ID},
+                                        '${c.FirstName.replace(/'/g, "\\'")}',
+                                        '${c.LastName.replace(/'/g, "\\'")}',
+                                        '${c.Email.replace(/'/g, "\\'")}',
+                                        '${c.Phone.replace(/'/g, "\\'")}'
                                     )">
                                         Edit
                                     </button>
 
-                                    <button onclick="deleteContact(${contacts[i].ID})">
+                                    <button onclick="deleteContact(${c.ID})">
                                         Delete
                                     </button>
                                 </div>
@@ -430,6 +430,7 @@ function searchContact()
                         </div>
                     `;
                 }
+
 
                 document.getElementById("ContactList").innerHTML = contactListHTML;
 
