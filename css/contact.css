@@ -30,7 +30,6 @@ body {
 }
 
 #title {
-    margin: 0 0 30px 0;
     font-size: 28px;
     color: #333;
     text-align: left;
@@ -119,8 +118,8 @@ input[type="text"]:focus, input[type="email"]:focus {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 5px;
-    min-height: 100px;
-    max-height: 500px;
+    min-height: 20vh;
+    max-height: 40vh;
     margin: 15px 0;
     border: 1px solid #ddd;
     overflow-y: auto;
