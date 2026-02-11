@@ -474,3 +474,17 @@ document.addEventListener("click", function(e)
         });
     }
 });
+
+function openResultsModal()
+{
+    document.getElementById("resultsModal").style.display = "block";
+
+    // Copy existing results into full view
+    document.getElementById("FullContactList").innerHTML =
+        document.getElementById("ContactList").innerHTML;
+}
+
+function closeResultsModal()
+{
+    document.getElementById("resultsModal").style.display = "none";
+}

@@ -110,6 +110,9 @@
         <input type="text" id="searchText" placeholder="Search For Contact">
         <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();">Search</button><br>
         <span id="SearchResult"></span>
+        <button type="button" class="buttons" onclick="openResultsModal()">
+            Expand Results
+        </button>
         <p id="ContactList"></p>
 
         <button type="button" id="addColorButton" class="buttons" onclick="openAddContactModal();"> Add New Contact </button><br>
@@ -188,6 +191,14 @@
         <button type="button" class="cancel-button" onclick="closeEditContactModal();">
             Cancel
         </button>
+    </div>
+</div>
+
+<div id="resultsModal" class="modal">
+    <div class="modal-content large-modal">
+        <span class="close" onclick="closeResultsModal()">×</span>
+        <h2>Search Results</h2>
+        <div id="FullContactList"></div>
     </div>
 </div>
 

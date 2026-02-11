@@ -306,3 +306,10 @@ input[type="text"]:focus, input[type="email"]:focus {
 .dropdown.show .dropdown-content {
     display: block;
 }
+
+.large-modal {
+    width: 80%;
+    max-width: 1000px;
+    height: 80vh;
+    overflow-y: auto;
+}
