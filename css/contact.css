@@ -61,7 +61,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .buttons {
-    background-color: #c9184a;
+    background-color: pink;
     color: white;
     padding: 12px 25px;
     border: none;
