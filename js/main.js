@@ -610,14 +610,9 @@ function toggleDropdown(button)
     button.parentElement.classList.toggle("show");
 }
 
-// Close dropdown if clicking outside
-document.addEventListener("click", function(e)
-{
-    if (!e.target.matches(".dots-btn"))
-    {
-        document.querySelectorAll(".dropdown").forEach(d => {
-            d.classList.remove("show");
-        });
+document.addEventListener("click", function(e) {
+    if (!e.target.matches(".dots-btn") && !e.target.closest(".dropdown-content")) {
+        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
     }
 });
 
