@@ -447,7 +447,57 @@ function searchContact()
 }
 
 
-function deleteContact() {
+function deleteContact(contactId) {
+
+    if (!confirm("Are you sure you want to delete this contact?")) {
+        return; 
+    }
+
+    let tmp = {
+        id: contactId  
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlPrefix + '/deleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    document.getElementById("SearchResult").innerHTML = "Deleting contact...";
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            try {
+                // Parse the JSON response from the server
+                let jsonObject = JSON.parse(this.responseText);
+
+                // Check if the server returned an error
+                if (jsonObject.error && jsonObject.error !== "") {
+                    document.getElementById("SearchResult").innerHTML = "Error: " + jsonObject.error;
+                    return;
+                }
+
+                document.getElementById("SearchResult").innerHTML = "Contact deleted successfully!";
+
+                
+                setTimeout(() => {
+                    document.getElementById("SearchResult").innerHTML = "";
+                }, 2000);
+
+                // Refresh the contact list to show updated results
+                searchContact();
+            }
+            catch (err) {
+                document.getElementById("SearchResult").innerHTML = "Error deleting contact.";
+                console.error(err); 
+            }
+        }
+    };
+
+
+    xhr.send(jsonPayload);
 }
 
 async function editContact(id, firstName, lastName, email, phone)
