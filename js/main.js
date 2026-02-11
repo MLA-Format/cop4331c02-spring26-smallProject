@@ -479,16 +479,14 @@ document.addEventListener("click", function(e)
     }
 });
 
-function openResultsModal()
-{
+function openResultsModal() {
     document.getElementById("resultsModal").style.display = "block";
 
-    // Copy existing results into full view
+    // Copy contact list to modal
     document.getElementById("FullContactList").innerHTML =
         document.getElementById("ContactList").innerHTML;
 }
 
-function closeResultsModal()
-{
+function closeResultsModal() {
     document.getElementById("resultsModal").style.display = "none";
 }
