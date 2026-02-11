@@ -232,7 +232,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .cancel-button {
-    background-color: #f44336;
+    background-color: #f44335;
     color: white;
     padding: 12px 30px;
     border: none;
