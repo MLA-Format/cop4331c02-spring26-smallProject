@@ -272,9 +272,72 @@ function addUser() {
     xhr.send(jsonPayload);
 }
 
+function addContact()
+{
+    let firstName = document.getElementById("firstName").value.trim();
+    let lastName = document.getElementById("lastName").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phoneNumber").value.trim();
 
-function addContact() {
+    if (!firstName || !lastName || !email || !phone)
+    {
+        document.getElementById("AddResult").innerHTML = "Please fill in all fields.";
+        return;
+    }
+
+    let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        userID: userId   // 🔥 Use global userId from login
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlPrefix + '/addContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    document.getElementById("AddResult").innerHTML = "Adding contact...";
+
+    xhr.onreadystatechange = function()
+    {
+        if (this.readyState === 4)
+        {
+            try
+            {
+                let jsonObject = JSON.parse(this.responseText);
+
+                if (jsonObject.error)
+                {
+                    document.getElementById("AddResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                document.getElementById("AddResult").innerHTML = "Contact Added Successfully!";
+                
+                // Clear fields
+                document.getElementById("firstName").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("phoneNumber").value = "";
+
+                searchContact(); // refresh list
+            }
+            catch (err)
+            {
+                document.getElementById("AddResult").innerHTML = "Server response error.";
+                console.error(err);
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
 }
+
 
 function searchContact() {
 }
