@@ -53,6 +53,7 @@
 ///might need additional code 
         function openEditContactModal(contactId, firstName, lastName, email, phoneNumber) {
             document.getElementById('editContactModal').style.display = 'block';
+            document.getElementById('editContactModal').style.zIndex = '2000';
             document.getElementById('editContactId').value = contactId;
             document.getElementById('editFirstName').value = firstName;
             document.getElementById('editLastName').value = lastName;
