@@ -15,11 +15,12 @@ body {
 
 .container {
     background-color: white;
-    width: 600px;
+    width: 900px;
     max-width: 90%;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    min-height: 600px;
 }
 
 #title {
@@ -60,23 +61,26 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .buttons {
-    background-color: #A0826D;
+    background-color: #c9184a;
     color: white;
     padding: 12px 25px;
     border: none;
-    border-radius: 5px;
+    border-radius: 2em;
     cursor: pointer;
     font-size: 16px;
     margin: 5px;
     transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
 }
 
 .buttons:hover {
-    background-color: #8B6F47;
+    background-color: #a01438;
 }
 
 #logoutButton {
-    background-color: #f44336;
+    background-color: #c9184a;
     padding: 8px 20px;
     font-size: 14px;
 }
@@ -97,8 +101,10 @@ input[type="text"]:focus, input[type="email"]:focus {
     padding: 20px;
     border-radius: 5px;
     min-height: 100px;
+    max-height: 500px;
     margin: 15px 0;
     border: 1px solid #ddd;
+    overflow-y: auto;
 }
 
 .contact-item {
@@ -124,19 +130,19 @@ input[type="text"]:focus, input[type="email"]:focus {
 .action-btn {
     padding: 8px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 2em;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s;
 }
 
 .edit-btn {
-    background-color: #C19A6B;
+    background-color: #c9184a;
     color: white;
 }
 
 .edit-btn:hover {
-    background-color: #A67C52;
+    background-color: #a01438;
 }
 
 .delete-btn {
@@ -207,19 +213,22 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .submit-button {
-    background-color: #A0826D;
+    background-color: #c9184a;
     color: white;
     padding: 12px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 2em;
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
     width: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
 }
 
 .submit-button:hover {
-    background-color: #8B6F47;
+    background-color: #a01438;
 }
 
 .cancel-button {
@@ -227,7 +236,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     color: white;
     padding: 12px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 2em;
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
