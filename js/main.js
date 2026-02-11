@@ -466,6 +466,9 @@ async function editContact(id, firstName, lastName, email, phone)
 
         const url = urlPrefix + "/updateContact." + extension;
 
+        const resultSpan = document.getElementById("EditResult");
+        resultSpan.innerHTML = "Updating...";
+
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -478,28 +481,35 @@ async function editContact(id, firstName, lastName, email, phone)
 
         if (!response.ok)
         {
-            throw new Error("HTTP error " + response.status);
+            resultSpan.innerHTML = "Server error (" + response.status + ")";
+            return;
         }
 
         if (data.error)
         {
-            alert("Update failed: " + data.error);
+            resultSpan.innerHTML = data.error;
             return;
         }
 
-        // ✅ Success
-        alert("Contact updated successfully!");
+        resultSpan.innerHTML = "Contact updated!";
 
-        closeEditContactModal();
 
-        searchContact(); // refresh list
+        searchContact();
+
+        setTimeout(() => {
+            closeEditContactModal();
+            resultSpan.innerHTML = "";
+        }, 800);
     }
     catch (err)
     {
         console.error("Edit Contact Error:", err);
-        alert("Could not update contact.");
+
+        document.getElementById("EditResult").innerHTML =
+            "Update failed.";
     }
 }
+
 
 
 
