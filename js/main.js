@@ -450,11 +450,11 @@ function searchContact()
 function deleteContact(contactId) {
 
     if (!confirm("Are you sure you want to delete this contact?")) {
-        return; 
+        return;
     }
 
     let tmp = {
-        id: contactId  
+        id: contactId
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -462,43 +462,76 @@ function deleteContact(contactId) {
     let url = urlPrefix + '/deleteContact.' + extension;
 
     let xhr = new XMLHttpRequest();
-    
+
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    document.getElementById("SearchResult").innerHTML = "Deleting contact...";
 
-    xhr.onreadystatechange = function() {
+    document.getElementById("SearchResult").innerHTML = "Processing...";
+
+    xhr.onreadystatechange = function () {
+
         if (this.readyState === 4) {
+
+            // Server / network error
+            if (this.status !== 200) {
+                document.getElementById("SearchResult").innerHTML =
+                    "Server error (" + this.status + ")";
+                return;
+            }
+
+            let response = this.responseText;
+
+            // Empty response
+            if (!response || response.trim() === "") {
+                document.getElementById("SearchResult").innerHTML =
+                    "No response from server.";
+                return;
+            }
+
+            let jsonObject;
+
+            // Try parsing JSON safely
             try {
-                // Parse the JSON response from the server
-                let jsonObject = JSON.parse(this.responseText);
+                jsonObject = JSON.parse(response);
+            } catch (err) {
 
-                // Check if the server returned an error
-                if (jsonObject.error && jsonObject.error !== "") {
-                    document.getElementById("SearchResult").innerHTML = "Error: " + jsonObject.error;
-                    return;
-                }
+                console.error("Invalid JSON:", response);
 
-                document.getElementById("SearchResult").innerHTML = "Contact deleted successfully!";
+                document.getElementById("SearchResult").innerHTML =
+                    "Delete failed (bad server response).";
 
-                
-                setTimeout(() => {
-                    document.getElementById("SearchResult").innerHTML = "";
-                }, 2000);
-
-                // Refresh the contact list to show updated results
-                searchContact();
+                return;
             }
-            catch (err) {
-                document.getElementById("SearchResult").innerHTML = "Error deleting contact.";
-                console.error(err); 
+
+            // Handle backend errors (whatever format it sends)
+            if (
+                (jsonObject.error && jsonObject.error !== "") ||
+                jsonObject.status === "error"
+            ) {
+                document.getElementById("SearchResult").innerHTML =
+                    "Error: " + (jsonObject.error || "Unknown error");
+
+                return;
             }
+
+            // Assume success
+            document.getElementById("SearchResult").innerHTML =
+                "Contact deleted successfully!";
+
+            // Clear message after 2s
+            setTimeout(() => {
+                document.getElementById("SearchResult").innerHTML = "";
+            }, 2000);
+
+            // Refresh list
+            searchContact();
         }
     };
 
-
     xhr.send(jsonPayload);
 }
+
+
 
 async function editContact(id, firstName, lastName, email, phone)
 {
