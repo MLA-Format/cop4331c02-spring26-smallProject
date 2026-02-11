@@ -387,14 +387,14 @@ function searchContact()
 
                 let contacts = jsonObject.results;
 
-                if (contacts.length === 0)
+                if (!contacts || contacts.length === 0)
                 {
                     document.getElementById("SearchResult").innerHTML = "No Contacts Found.";
                     return;
                 }
 
                 document.getElementById("SearchResult").innerHTML = "";
-                
+
                 let contactListHTML = "";
 
                 for (let i = 0; i < contacts.length; i++)
@@ -406,21 +406,25 @@ function searchContact()
                                 📧 ${contacts[i].email}<br>
                                 📞 ${contacts[i].phone}
                             </div>
-                            <div class="contact-actions">
-                                <button class="action-btn edit-btn" 
-                                    onclick="openEditContactModal(
+
+                            <div class="dropdown">
+                                <button class="dots-btn" onclick="toggleDropdown(this)">⋮</button>
+
+                                <div class="dropdown-content">
+                                    <button onclick="openEditContactModal(
                                         ${contacts[i].ID},
                                         '${contacts[i].firstName}',
                                         '${contacts[i].lastName}',
                                         '${contacts[i].email}',
                                         '${contacts[i].phone}'
                                     )">
-                                    Edit
-                                </button>
-                                <button class="action-btn delete-btn" 
-                                    onclick="deleteContact(${contacts[i].ID})">
-                                    Delete
-                                </button>
+                                        Edit
+                                    </button>
+
+                                    <button onclick="deleteContact(${contacts[i].ID})">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -439,6 +443,7 @@ function searchContact()
     xhr.send(jsonPayload);
 }
 
+
 function deleteContact() {
 }
 
@@ -446,3 +451,26 @@ function editContact() {
 }
 
 
+function toggleDropdown(button)
+{
+    // Close other dropdowns
+    document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== button.parentElement)
+        {
+            d.classList.remove("show");
+        }
+    });
+
+    button.parentElement.classList.toggle("show");
+}
+
+// Close dropdown if clicking outside
+document.addEventListener("click", function(e)
+{
+    if (!e.target.matches(".dots-btn"))
+    {
+        document.querySelectorAll(".dropdown").forEach(d => {
+            d.classList.remove("show");
+        });
+    }
+});
