@@ -83,6 +83,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     transition: background-color 0.3s;
     text-transform: uppercase;
     font-weight: 600;
+    float:right;
     letter-spacing: 0.15em;
 }
 
