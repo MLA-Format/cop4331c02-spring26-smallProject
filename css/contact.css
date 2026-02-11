@@ -186,12 +186,11 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 .modal-content {
     background-color: white;
-    margin: 10% auto;
+    margin: 1em auto;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    max-width: 90%; 
+    max-width: 40%; 
 }
 
 .close {
