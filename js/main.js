@@ -401,7 +401,7 @@ function searchContact() {
                             <button class="dots-btn">⋮</button>
                             <div class="dropdown-content">
                                 <button class="edit-btn">Edit</button>
-                                <button class="delete-btn">Delete</button>
+                                <button class="delete-btn" onclick="openDeleteModal(${contact.ID}, '${contact.firstName} ${contact.lastName}')">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -628,3 +628,36 @@ function openResultsModal() {
 function closeResultsModal() {
     document.getElementById("resultsModal").style.display = "none";
 }
+
+let deleteContactId = null;
+
+function openDeleteModal(contactId, contactName) {
+    deleteContactId = contactId;
+    document.getElementById("deleteModalText").textContent =
+        `Are you sure you want to delete ${contactName}?`;
+    document.getElementById("deleteModal").style.display = "block";
+}
+
+function closeDeleteModal() {
+    deleteContactId = null;
+    document.getElementById("deleteModal").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+        if (deleteContactId !== null) {
+            deleteContact(deleteContactId);
+            closeDeleteModal();
+        }
+    });
+
+    document.getElementById("cancelDeleteBtn").addEventListener("click", closeDeleteModal);
+    document.querySelector("#deleteModal .close-btn").addEventListener("click", closeDeleteModal);
+});
+
+
+window.addEventListener("click", (e) => {
+    if (e.target == document.getElementById("deleteModal")) {
+        closeDeleteModal();
+    }
+});
