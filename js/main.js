@@ -500,7 +500,6 @@ window.addEventListener("click", (e) => {
 
 // DELETE CONTACT
 function deleteContact(contactId) {
-    if (!confirm("Are you sure you want to delete this contact?")) return;
 
     const tmp = { id: contactId };
     const jsonPayload = JSON.stringify(tmp);
