@@ -401,7 +401,7 @@ function searchContact() {
                             <button class="dots-btn">⋮</button>
                             <div class="dropdown-content">
                                 <button class="edit-btn">Edit</button>
-                                <button class="delete-btn" onclick="openDeleteModal(${contact.ID}, '${contact.firstName} ${contact.lastName}')">Delete</button>
+                                <button class="delete-btn">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -419,32 +419,6 @@ function searchContact() {
 
     xhr.send(jsonPayload);
 }
-
-
-document.getElementById("ContactList").addEventListener("click", function(e) {
-    if (e.target.classList.contains("delete-btn")) {
-        e.stopPropagation(); // prevent dropdown from closing too soon
-        const contactId = parseInt(e.target.closest(".contact-item").dataset.id);
-        if (!isNaN(contactId)) {
-            deleteContact(contactId);
-        }
-    }
-});
-
-
-document.getElementById("ContactList").addEventListener("click", function(e) {
-    if (e.target.classList.contains("edit-btn")) {
-        e.stopPropagation();
-        const contactEl = e.target.closest(".contact-item");
-        const id = parseInt(contactEl.dataset.id);
-        const firstName = contactEl.querySelector(".contact-info strong").textContent.split(" ")[0];
-        const lastName = contactEl.querySelector(".contact-info strong").textContent.split(" ")[1];
-        const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
-        const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
-
-        openEditContactModal(id, firstName, lastName, email, phone);
-    }
-});
 
 
 let deleteContactId = null;
@@ -498,7 +472,7 @@ window.addEventListener("click", (e) => {
     if (e.target == document.getElementById("deleteModal")) closeDeleteModal();
 });
 
-// DELETE CONTACT
+
 function deleteContact(contactId) {
 
     console.log("made it");
