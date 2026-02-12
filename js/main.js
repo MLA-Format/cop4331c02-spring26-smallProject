@@ -459,14 +459,21 @@ function closeDeleteModal() {
     document.getElementById("deleteModal").style.display = "none";
 }
 
-document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
-    if (deleteContactId !== null) {
-        deleteContact(deleteContactId);
-        closeDeleteModal();
-    }
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // Attach delete modal buttons
+    const confirmBtn = document.getElementById("confirmDeleteBtn");
+    const cancelBtn = document.getElementById("cancelDeleteBtn");
 
-document.getElementById("cancelDeleteBtn").addEventListener("click", closeDeleteModal);
+    confirmBtn.addEventListener("click", () => {
+        if (deleteContactId !== null) {
+            deleteContact(deleteContactId);
+            closeDeleteModal();
+        }
+    });
+
+    cancelBtn.addEventListener("click", closeDeleteModal);
+}, false);
+
 document.querySelector("#deleteModal .close-btn").addEventListener("click", closeDeleteModal);
 window.addEventListener("click", (e) => {
     if (e.target == document.getElementById("deleteModal")) closeDeleteModal();
