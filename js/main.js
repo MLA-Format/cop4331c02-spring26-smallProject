@@ -420,12 +420,12 @@ function searchContact()
                 document.getElementById("ContactList").innerHTML = contactListHTML;
 
                 // Add event listeners dynamically
-                document.querySelectorAll(".delete-btn").forEach(btn => {
-                    btn.addEventListener("click", function(e) {
-                        e.stopPropagation(); // prevent dropdown closing
-                        const contactId = this.closest(".contact-item").dataset.id;
+                document.getElementById("ContactList").addEventListener("click", function(e) {
+                    if (e.target.classList.contains("delete-btn")) {
+                        e.stopPropagation();
+                        const contactId = parseInt(e.target.closest(".contact-item").dataset.id);
                         deleteContact(contactId);
-                    });
+                    }
                 });
 
 
