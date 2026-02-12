@@ -351,8 +351,7 @@ function addContact()
 }
 
 
-function searchContact()
-{
+function searchContact() {
     let search = document.getElementById("searchText").value.trim();
 
     let tmp = {
@@ -370,69 +369,48 @@ function searchContact()
 
     document.getElementById("SearchResult").innerHTML = "Searching...";
     document.getElementById("ContactList").innerHTML = "";
-    document.getElementById("expandResultsBtn").style.display = "none"; 
+    document.getElementById("expandResultsBtn").style.display = "none";
 
-    xhr.onreadystatechange = function ()
-    {
-        if (this.readyState === 4)
-        {
-            try
-            {
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            try {
                 let jsonObject = JSON.parse(this.responseText);
 
-                if (jsonObject.error && jsonObject.error !== "")
-                {
+                if (jsonObject.error && jsonObject.error !== "") {
                     document.getElementById("SearchResult").innerHTML = jsonObject.error;
                     return;
                 }
 
                 let contacts = jsonObject.results;
 
-                if (!contacts || contacts.length === 0)
-                {
+                if (!contacts || contacts.length === 0) {
                     document.getElementById("SearchResult").innerHTML = "No Contacts Found.";
                     return;
                 }
 
                 document.getElementById("SearchResult").innerHTML = "";
 
-                // After building each contact item
-                let contactListHTML = "";
-                contacts.forEach(contact => {
-                    contactListHTML += `
-                        <div class="contact-item" data-id="${contact.ID}">
-                            <div class="contact-info">
-                                <strong>${contact.firstName} ${contact.lastName}</strong><br>
-                                📧 ${contact.email}<br>
-                                📞 ${contact.phone}
-                            </div>
-                            <div class="dropdown">
-                                <button class="dots-btn">⋮</button>
-                                <div class="dropdown-content">
-                                    <button class="edit-btn">Edit</button>
-                                    <button class="delete-btn">Delete</button>
-                                </div>
+                let contactListHTML = contacts.map(contact => `
+                    <div class="contact-item" data-id="${contact.ID}">
+                        <div class="contact-info">
+                            <strong>${contact.firstName} ${contact.lastName}</strong><br>
+                            📧 ${contact.email}<br>
+                            📞 ${contact.phone}
+                        </div>
+                        <div class="dropdown">
+                            <button class="dots-btn">⋮</button>
+                            <div class="dropdown-content">
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
                             </div>
                         </div>
-                    `;
-                });
+                    </div>
+                `).join("");
 
                 document.getElementById("ContactList").innerHTML = contactListHTML;
 
-                // Add event listeners dynamically
-                document.getElementById("ContactList").addEventListener("click", function(e) {
-                    if (e.target.classList.contains("delete-btn")) {
-                        e.stopPropagation();
-                        const contactId = parseInt(e.target.closest(".contact-item").dataset.id);
-                        deleteContact(contactId);
-                    }
-                });
-
-
                 document.getElementById("expandResultsBtn").style.display = "inline-block";
-            }
-            catch (err)
-            {
+            } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "Search failed.";
                 console.error(err);
             }
@@ -441,6 +419,33 @@ function searchContact()
 
     xhr.send(jsonPayload);
 }
+
+
+document.getElementById("ContactList").addEventListener("click", function(e) {
+    if (e.target.classList.contains("delete-btn")) {
+        e.stopPropagation(); // prevent dropdown from closing too soon
+        const contactId = parseInt(e.target.closest(".contact-item").dataset.id);
+        if (!isNaN(contactId)) {
+            deleteContact(contactId);
+        }
+    }
+});
+
+
+document.getElementById("ContactList").addEventListener("click", function(e) {
+    if (e.target.classList.contains("edit-btn")) {
+        e.stopPropagation();
+        const contactEl = e.target.closest(".contact-item");
+        const id = parseInt(contactEl.dataset.id);
+        const firstName = contactEl.querySelector(".contact-info strong").textContent.split(" ")[0];
+        const lastName = contactEl.querySelector(".contact-info strong").textContent.split(" ")[1];
+        const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
+        const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
+
+        openEditContactModal(id, firstName, lastName, email, phone);
+    }
+});
+
 
 
 function deleteContact(contactId) {
