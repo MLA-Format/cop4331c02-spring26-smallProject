@@ -478,7 +478,7 @@ function deleteContact(contactId) {
     console.log("made it");
     const tmp = { id: contactId };
     const jsonPayload = JSON.stringify(tmp);
-    const url = `${urlPrefix}/deleteContact.${extension}`;
+    let url = urlPrefix + '/deleteContact.' + extension;
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
