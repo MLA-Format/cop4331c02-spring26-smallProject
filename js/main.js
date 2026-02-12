@@ -501,6 +501,7 @@ window.addEventListener("click", (e) => {
 // DELETE CONTACT
 function deleteContact(contactId) {
 
+    console.log("made it");
     const tmp = { id: contactId };
     const jsonPayload = JSON.stringify(tmp);
     const url = `${urlPrefix}/deleteContact.${extension}`;
