@@ -447,190 +447,32 @@ document.getElementById("ContactList").addEventListener("click", function(e) {
 });
 
 
+let deleteContactId = null;
 
-function deleteContact(contactId) {
+// Event delegation for edit/delete buttons
+document.getElementById("ContactList").addEventListener("click", function(e) {
+    const contactEl = e.target.closest(".contact-item");
+    if (!contactEl) return;
 
-    if (!confirm("Are you sure you want to delete this contact?")) {
-        return;
+    const contactId = parseInt(contactEl.dataset.id);
+    const contactName = contactEl.querySelector(".contact-info strong").textContent;
+
+    if (e.target.classList.contains("delete-btn")) {
+        e.stopPropagation();
+        openDeleteModal(contactId, contactName);
     }
 
-    let tmp = {
-        id: contactId
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlPrefix + '/deleteContact.' + extension;
-
-    let xhr = new XMLHttpRequest();
-
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    document.getElementById("SearchResult").innerHTML = "Processing...";
-
-    xhr.onreadystatechange = function () {
-
-        if (this.readyState === 4) {
-
-            // Server / network error
-            if (this.status !== 200) {
-                document.getElementById("SearchResult").innerHTML =
-                    "Server error (" + this.status + ")";
-                return;
-            }
-
-            let response = this.responseText;
-
-            // Empty response
-            if (!response || response.trim() === "") {
-                document.getElementById("SearchResult").innerHTML =
-                    "No response from server.";
-                return;
-            }
-
-            let jsonObject;
-
-            // Try parsing JSON safely
-            try {
-                jsonObject = JSON.parse(response);
-            } catch (err) {
-
-                console.error("Invalid JSON:", response);
-
-                document.getElementById("SearchResult").innerHTML =
-                    "Delete failed (bad server response).";
-
-                return;
-            }
-
-            // Handle backend errors (whatever format it sends)
-            if (
-                (jsonObject.error && jsonObject.error !== "") ||
-                jsonObject.status === "error"
-            ) {
-                document.getElementById("SearchResult").innerHTML =
-                    "Error: " + (jsonObject.error || "Unknown error");
-
-                return;
-            }
-
-            // Assume success
-            document.getElementById("SearchResult").innerHTML =
-                "Contact deleted successfully!";
-
-            // Clear message after 2s
-            setTimeout(() => {
-                document.getElementById("SearchResult").innerHTML = "";
-            }, 2000);
-
-            // Refresh list
-            searchContact();
-        }
-    };
-
-    xhr.send(jsonPayload);
-}
-
-
-
-async function editContact(id, firstName, lastName, email, phone)
-{
-    try
-    {
-        const tmp = {
-            id: parseInt(id),
-            firstName: firstName.trim(),
-            lastName: lastName.trim(),
-            email: email.trim(),
-            phone: phone.trim()
-        };
-
-        const jsonPayload = JSON.stringify(tmp);
-
-        const url = urlPrefix + "/updateContact." + extension;
-
-        const resultSpan = document.getElementById("EditResult");
-        resultSpan.innerHTML = "Updating...";
-
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: jsonPayload
-        });
-
-        const data = await response.json();
-
-        if (!response.ok)
-        {
-            resultSpan.innerHTML = "Server error (" + response.status + ")";
-            return;
-        }
-
-        if (data.error)
-        {
-            resultSpan.innerHTML = data.error;
-            return;
-        }
-
-        resultSpan.innerHTML = "Contact updated!";
-
-
-        searchContact();
-
-        setTimeout(() => {
-            closeEditContactModal();
-            resultSpan.innerHTML = "";
-        }, 800);
-    }
-    catch (err)
-    {
-        console.error("Edit Contact Error:", err);
-
-        document.getElementById("EditResult").innerHTML =
-            "Update failed.";
-    }
-}
-
-
-
-
-
-function toggleDropdown(button)
-{
-    // Close other dropdowns
-    document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== button.parentElement)
-        {
-            d.classList.remove("show");
-        }
-    });
-
-    button.parentElement.classList.toggle("show");
-}
-
-document.addEventListener("click", function(e) {
-    if (!e.target.matches(".dots-btn") && !e.target.closest(".dropdown-content")) {
-        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+    if (e.target.classList.contains("edit-btn")) {
+        e.stopPropagation();
+        const first = contactName.split(" ")[0];
+        const last = contactName.split(" ")[1];
+        const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
+        const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
+        openEditContactModal(contactId, first, last, email, phone);
     }
 });
 
-function openResultsModal() {
-    document.getElementById("resultsModal").style.display = "block";
-
-    // Copy contact list to modal
-    document.getElementById("FullContactList").innerHTML =
-        document.getElementById("ContactList").innerHTML;
-}
-
-function closeResultsModal() {
-    document.getElementById("resultsModal").style.display = "none";
-}
-
-let deleteContactId = null;
-
+// DELETE MODAL
 function openDeleteModal(contactId, contactName) {
     deleteContactId = contactId;
     document.getElementById("deleteModalText").textContent =
@@ -643,21 +485,115 @@ function closeDeleteModal() {
     document.getElementById("deleteModal").style.display = "none";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
-        if (deleteContactId !== null) {
-            deleteContact(deleteContactId);
-            closeDeleteModal();
-        }
-    });
-
-    document.getElementById("cancelDeleteBtn").addEventListener("click", closeDeleteModal);
-    document.querySelector("#deleteModal .close-btn").addEventListener("click", closeDeleteModal);
-});
-
-
-window.addEventListener("click", (e) => {
-    if (e.target == document.getElementById("deleteModal")) {
+document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+    if (deleteContactId !== null) {
+        deleteContact(deleteContactId);
         closeDeleteModal();
     }
 });
+
+document.getElementById("cancelDeleteBtn").addEventListener("click", closeDeleteModal);
+document.querySelector("#deleteModal .close-btn").addEventListener("click", closeDeleteModal);
+window.addEventListener("click", (e) => {
+    if (e.target == document.getElementById("deleteModal")) closeDeleteModal();
+});
+
+// DELETE CONTACT
+function deleteContact(contactId) {
+    if (!confirm("Are you sure you want to delete this contact?")) return;
+
+    const tmp = { id: contactId };
+    const jsonPayload = JSON.stringify(tmp);
+    const url = `${urlPrefix}/deleteContact.${extension}`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    document.getElementById("SearchResult").innerHTML = "Processing...";
+
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status !== 200) {
+                document.getElementById("SearchResult").innerHTML = "Server error (" + this.status + ")";
+                return;
+            }
+            try {
+                const jsonObject = JSON.parse(this.responseText);
+                if (jsonObject.error || jsonObject.status === "error") {
+                    document.getElementById("SearchResult").innerHTML = "Error: " + (jsonObject.error || "Unknown error");
+                    return;
+                }
+                document.getElementById("SearchResult").innerHTML = "Contact deleted successfully!";
+                setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
+                searchContact();
+            } catch (err) {
+                document.getElementById("SearchResult").innerHTML = "Delete failed (bad server response).";
+                console.error(err);
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
+}
+
+// EDIT CONTACT
+async function editContact(id, firstName, lastName, email, phone) {
+    try {
+        const tmp = { id, firstName, lastName, email, phone };
+        const jsonPayload = JSON.stringify(tmp);
+        const url = `${urlPrefix}/updateContact.${extension}`;
+        const resultSpan = document.getElementById("EditResult");
+        resultSpan.innerHTML = "Updating...";
+
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json; charset=UTF-8" },
+            body: jsonPayload
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || data.error) {
+            resultSpan.innerHTML = data.error || "Server error (" + response.status + ")";
+            return;
+        }
+
+        resultSpan.innerHTML = "Contact updated!";
+        searchContact();
+
+        setTimeout(() => {
+            closeEditContactModal();
+            resultSpan.innerHTML = "";
+        }, 800);
+    } catch (err) {
+        console.error("Edit Contact Error:", err);
+        document.getElementById("EditResult").innerHTML = "Update failed.";
+    }
+}
+
+// =======================
+// DROPDOWN
+// =======================
+function toggleDropdown(button) {
+    document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== button.parentElement) d.classList.remove("show");
+    });
+    button.parentElement.classList.toggle("show");
+}
+
+document.addEventListener("click", function(e) {
+    if (!e.target.matches(".dots-btn") && !e.target.closest(".dropdown-content")) {
+        document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+    }
+});
+
+// =======================
+// MODALS
+// =======================
+function openResultsModal() {
+    document.getElementById("resultsModal").style.display = "block";
+    document.getElementById("FullContactList").innerHTML =
+        document.getElementById("ContactList").innerHTML;
+}
+
