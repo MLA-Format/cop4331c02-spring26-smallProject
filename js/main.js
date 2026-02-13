@@ -15,42 +15,48 @@ let handL = document.querySelector(".hand-1");
 let handR = document.querySelector(".hand-r");
 
 let normalEyeStyle = () => {
-    eyeL.style.cssText = `
-        left: 0.6em;
-        top: 0.6em;
-    `;
-    eyeR.style.cssText = `
-        right: 0.6em;
-        top: 0.6em;
-    `;
+    if (eyeL && eyeR) {
+    	eyeL.style.cssText = `
+        	left: 0.6em;
+        	top: 0.6em;
+    	`;
+    	eyeR.style.cssText = `
+        	right: 0.6em;
+        	top: 0.6em;
+    	`;
+    }
 };
 
 let normalHandStyle = () => {
-    handL.style.cssText = `
-        height: 2.81em;
-        top: 8em;
-        left: 7.5em;
-        transform: rotate(0deg);
-    `;
-    handR.style.cssText = `
-        height: 2.81em;
-        top: 8em;
-        right: 7.5em;
-        transform: rotate(0deg);
-    `;
+    if (handL && handR) {
+    	handL.style.cssText = `
+        	height: 2.81em;
+        	top: 8em;
+        	left: 7.5em;
+        	transform: rotate(0deg);
+    	`;
+   	handR.style.cssText = `
+        	height: 2.81em;
+        	top: 8em;
+        	right: 7.5em;
+        	transform: rotate(0deg);
+    	`;
+   }
 }
 
-usernameRef.addEventListener("focus", () => {
-    eyeL.style.cssText = `
-        left: 0.75em;
-        top: 1.12em;
-    `;
-    eyeR.style.cssText = `
-        right: 0.75em;
-        top: 1.12em;
-    `;
-    normalHandStyle();
-});
+if (usernameRef) {
+	usernameRef.addEventListener("focus", () => {
+    	eyeL.style.cssText = `
+        	left: 0.75em;
+        	top: 1.12em;
+    	`;
+    	eyeR.style.cssText = `
+        	right: 0.75em;
+        	top: 1.12em;
+    	`;
+    	normalHandStyle();
+	});
+}
 
 if (firstNameRef) {
     firstNameRef.addEventListener("focus", () => {
@@ -79,21 +85,22 @@ if (lastNameRef) {
         normalHandStyle();
     });
 }
-
-passwordRef.addEventListener("focus", () => {
-    handL.style.cssText =  `
-        height: 6.56em;
-        top: 3.87em;
-        left: 11.75em;
-        transform: rotate(-155deg);
-    `;
-    handR.style.cssText =  `
-        height: 6.56em;
-        top: 3.87em;
-        right: 11.75em;
-        transform: rotate(155deg);
-    `;
-});
+if (passwordRef) {
+	passwordRef.addEventListener("focus", () => {
+    	handL.style.cssText =  `
+        	height: 6.56em;
+        	top: 3.87em;
+        	left: 11.75em;
+        	transform: rotate(-155deg);
+    	`;
+   	handR.style.cssText =  `
+        	height: 6.56em;
+        	top: 3.87em;
+        	right: 11.75em;
+        	transform: rotate(155deg);
+    	`;
+	});
+}
 
 document.addEventListener("click", (e) => {
     let clickedElem = e.target;
@@ -424,25 +431,32 @@ function searchContact() {
 let deleteContactId = null;
 
 // Event delegation for edit/delete buttons
-document.getElementById("ContactList").addEventListener("click", function(e) {
-    const contactEl = e.target.closest(".contact-item");
-    if (!contactEl) return;
+document.addEventListener("click", function(e) {
+    // Handle edit and delete button clicks
+    if (e.target.classList.contains("edit-btn") || e.target.classList.contains("delete-btn")) {
+        const contactEl = e.target.closest(".contact-item");
+        if (!contactEl) return;
 
-    const contactId = parseInt(contactEl.dataset.id);
-    const contactName = contactEl.querySelector(".contact-info strong").textContent;
+        const contactId = parseInt(contactEl.dataset.id);
+        const contactName = contactEl.querySelector(".contact-info strong").textContent;
 
-    if (e.target.classList.contains("delete-btn")) {
-        e.stopPropagation();
-        openDeleteModal(contactId, contactName);
-    }
+        if (e.target.classList.contains("delete-btn")) {
+            e.stopPropagation();
+            openDeleteModal(contactId, contactName);
+            // Close dropdown
+            document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+        }
 
-    if (e.target.classList.contains("edit-btn")) {
-        e.stopPropagation();
-        const first = contactName.split(" ")[0];
-        const last = contactName.split(" ")[1];
-        const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
-        const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
-        openEditContactModal(contactId, first, last, email, phone);
+        if (e.target.classList.contains("edit-btn")) {
+            e.stopPropagation();
+            const first = contactName.split(" ")[0];
+            const last = contactName.split(" ").slice(1).join(" ");
+            const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
+            const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
+            openEditContactModal(contactId, first, last, email, phone);
+            // Close dropdown
+            document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+        }
     }
 });
 
@@ -464,21 +478,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmBtn = document.getElementById("confirmDeleteBtn");
     const cancelBtn = document.getElementById("cancelDeleteBtn");
 
-    confirmBtn.addEventListener("click", () => {
-        if (deleteContactId !== null) {
-            deleteContact(deleteContactId);
-            closeDeleteModal();
-        }
-    });
+    if (confirmBtn) {
+        confirmBtn.addEventListener("click", () => {
+            if (deleteContactId !== null) {
+                deleteContact(deleteContactId);
+                closeDeleteModal();
+            }
+        });
+    }
 
-    cancelBtn.addEventListener("click", closeDeleteModal);
+    if (cancelBtn) {
+        cancelBtn.addEventListener("click", closeDeleteModal);
+    }
 }, false);
 
-document.querySelector("#deleteModal .close-btn").addEventListener("click", closeDeleteModal);
-window.addEventListener("click", (e) => {
-    if (e.target == document.getElementById("deleteModal")) closeDeleteModal();
-});
-
+const deleteModal = document.getElementById("deleteModal");
+if (deleteModal) {
+    window.addEventListener("click", (e) => {
+        if (e.target == deleteModal) closeDeleteModal();
+    });
+}
 
 function deleteContact(contactId) {
 
@@ -556,14 +575,23 @@ async function editContact(id, firstName, lastName, email, phone) {
 // =======================
 // DROPDOWN
 // =======================
-function toggleDropdown(button) {
-    document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== button.parentElement) d.classList.remove("show");
-    });
-    button.parentElement.classList.toggle("show");
-}
-
 document.addEventListener("click", function(e) {
+    // Toggle dropdown when dots button is clicked
+    if (e.target.matches(".dots-btn")) {
+        e.stopPropagation();
+        const dropdown = e.target.closest(".dropdown");
+        
+        // Close other dropdowns
+        document.querySelectorAll(".dropdown").forEach(d => {
+            if (d !== dropdown) d.classList.remove("show");
+        });
+        
+        // Toggle this dropdown
+        dropdown.classList.toggle("show");
+        return;
+    }
+    
+    // Close dropdowns when clicking outside
     if (!e.target.matches(".dots-btn") && !e.target.closest(".dropdown-content")) {
         document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
     }
