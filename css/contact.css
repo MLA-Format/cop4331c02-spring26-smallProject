@@ -283,7 +283,6 @@ input[type="text"]:focus, input[type="email"]:focus {
     position: absolute;
     right: 0;
     top: 30px;
-    background-color: white;
     min-width: 120px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     border-radius: 8px;
