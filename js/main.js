@@ -606,3 +606,6 @@ function openResultsModal() {
         document.getElementById("ContactList").innerHTML;
 }
 
+function closeResultsModal() {
+    document.getElementById("resultsModal").style.display = "none";
+}
