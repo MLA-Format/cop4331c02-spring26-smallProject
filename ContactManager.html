@@ -35,17 +35,20 @@
         }
         
         function submitNewContact() {
-            var firstName = document.getElementById('firstName').value;
-            var lastName = document.getElementById('lastName').value;
-            var email = document.getElementById('email').value;
-            var phoneNumber = document.getElementById('phoneNumber').value;
-            const resultSpan = document.getElementById("EditResult");
-            
-            if (firstName === '' || lastName === '' || email === '' || phoneNumber === '') {
-                resultSpan.innerHTML = ('Please fill in all fields!');
-                return;
-            }
-            
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName  = document.getElementById('lastName').value.trim();
+            const email     = document.getElementById('email').value.trim();
+            const phone     = document.getElementById('phoneNumber').value.trim();
+
+            // Use Add modal result span (NOT EditResult)
+            const resultSpan = document.getElementById("AddResult");
+
+            // Clear old message
+            resultSpan.innerHTML = "";
+            resultSpan.style.color = "red";
+
+            // Empty check
             if (!firstName || !lastName || !email || !phone) {
                 resultSpan.innerHTML = "All fields are required.";
                 return;
@@ -57,16 +60,17 @@
                 return;
             }
 
-            // Phone check (basic)
+            // Phone check
             if (!/^[0-9\-()\s]+$/.test(phone)) {
                 resultSpan.innerHTML = "Invalid phone number.";
                 return;
             }
-            
+
+            // Passed validation → submit
             addContact();
-            
             closeAddContactModal();
         }
+
 ///might need additional code 
         function openEditContactModal(contactId, firstName, lastName, email, phoneNumber) {
             document.getElementById('editContactModal').style.display = 'block';
