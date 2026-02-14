@@ -66,25 +66,42 @@
         }
         
         function submitEditContact() {
+
             const contactId = document.getElementById('editContactId').value;
+
             const firstName = document.getElementById('editFirstName').value.trim();
-            const lastName = document.getElementById('editLastName').value.trim();
-            const email = document.getElementById('editEmail').value.trim();
-            const phone = document.getElementById('editPhoneNumber').value.trim();
+            const lastName  = document.getElementById('editLastName').value.trim();
+            const email     = document.getElementById('editEmail').value.trim();
+            const phone     = document.getElementById('editPhoneNumber').value.trim();
 
+            const resultSpan = document.getElementById("EditResult");
+
+            // Clear previous message
+            resultSpan.innerHTML = "";
+            resultSpan.style.color = "red";
+
+            // Empty check
             if (!firstName || !lastName || !email || !phone) {
-                alert('Please fill in all fields!');
+                resultSpan.innerHTML = "All fields are required.";
                 return;
             }
 
+            // Email check
             if (!isValidEmail(email)) {
-                document.getElementById("AddResult").innerHTML =
-                    "Please enter a valid email address.";
+                resultSpan.innerHTML = "Invalid email format.";
                 return;
             }
 
+            // Phone check (basic)
+            if (!/^[0-9\-()\s]+$/.test(phone)) {
+                resultSpan.innerHTML = "Invalid phone number.";
+                return;
+            }
+
+            // Passed validation → send
             editContact(contactId, firstName, lastName, email, phone);
         }
+
 
         
         window.onclick = function(event) {
