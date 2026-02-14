@@ -164,8 +164,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .delete-btn:hover {
-    background-color: #ffc3d4;
-    color: black;
+    background-color: #a01438;
 }
 
 .modal {

@@ -77,6 +77,12 @@
                 return;
             }
 
+            if (!isValidEmail(email)) {
+                document.getElementById("AddResult").innerHTML =
+                    "Please enter a valid email address.";
+                return;
+            }
+
             editContact(contactId, firstName, lastName, email, phone);
         }
 

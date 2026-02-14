@@ -304,6 +304,12 @@ function addContact()
         return;
     }
 
+    if (!isValidEmail(email)) {
+        document.getElementById("AddResult").innerHTML =
+            "Please enter a valid email address.";
+        return;
+    }
+
     let tmp = {
         firstName: firstName,
         lastName: lastName,
@@ -540,6 +546,7 @@ function deleteContact(contactId) {
 
 // EDIT CONTACT
 async function editContact(id, firstName, lastName, email, phone) {
+
     try {
         const tmp = { id, firstName, lastName, email, phone };
         const jsonPayload = JSON.stringify(tmp);
@@ -620,4 +627,8 @@ function refreshExpandedResults() {
         document.getElementById("FullContactList").innerHTML =
             document.getElementById("ContactList").innerHTML;
     }
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
