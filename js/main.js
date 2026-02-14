@@ -291,89 +291,6 @@ function addUser() {
     xhr.send(jsonPayload);
 }
 
-function addContact()
-{
-    let firstName = document.getElementById("firstName").value.trim();
-    let lastName = document.getElementById("lastName").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let phone = document.getElementById("phoneNumber").value.trim();
-
-    const resultSpan = document.getElementById("AddResult");
-
-    // Clear old message
-    resultSpan.innerHTML = "";
-    resultSpan.style.color = "red";
-
-    if (!firstName || !lastName || !email || !phone)
-    {
-        resultSpan.innerHTML = "Please fill in all fields.";
-        return;
-    }
-
-    if (!isValidEmail(email)) {
-        resultSpan.innerHTML = "Please enter a valid email address.";
-        return;
-    }
-
-    if (!/^[0-9\-()\s]+$/.test(phone)) {
-        resultSpan.innerHTML = "Invalid phone number.";
-        return;
-    }
-
-    let tmp = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        userID: userId   // 🔥 Use global userId from login
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlPrefix + '/addContact.' + extension;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    document.getElementById("AddResult").innerHTML = "Adding contact...";
-
-    xhr.onreadystatechange = function()
-    {
-        if (this.readyState === 4)
-        {
-            try
-            {
-                let jsonObject = JSON.parse(this.responseText);
-
-                if (jsonObject.error)
-                {
-                    document.getElementById("AddResult").innerHTML = jsonObject.error;
-                    return;
-                }
-
-                document.getElementById("AddResult").innerHTML = "Contact Added Successfully!";
-                
-                // Clear fields
-                document.getElementById("firstName").value = "";
-                document.getElementById("lastName").value = "";
-                document.getElementById("email").value = "";
-                document.getElementById("phoneNumber").value = "";
-
-                searchContact(); // refresh list
-            }
-            catch (err)
-            {
-                document.getElementById("AddResult").innerHTML = "Server response error.";
-                console.error(err);
-            }
-        }
-    };
-
-    xhr.send(jsonPayload);
-}
-
-
 function searchContact() {
     let search = document.getElementById("searchText").value.trim();
 
@@ -641,4 +558,97 @@ function refreshExpandedResults() {
 
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function submitNewContact() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const phone     = document.getElementById('phoneNumber').value.trim();
+
+    // Use Add modal result span for validation messages
+    const resultSpan = document.getElementById("AddResult");
+    const mainResultSpan = document.getElementById("MainResult");
+
+    // Clear old messages
+    resultSpan.innerHTML = "";
+    resultSpan.style.color = "red";
+    mainResultSpan.innerHTML = "";  // Clear previous main result
+
+    // Empty check
+    if (!firstName || !lastName || !email || !phone) {
+        resultSpan.innerHTML = "All fields are required.";
+        return;
+    }
+
+    // Email check
+    if (!isValidEmail(email)) {
+        resultSpan.innerHTML = "Invalid email format.";
+        return;
+    }
+
+    // Phone check
+    if (!/^[0-9\-()\s]+$/.test(phone)) {
+        resultSpan.innerHTML = "Invalid phone number.";
+        return;
+    }
+
+    // Passed validation → submit
+    addContact(firstName, lastName, email, phone);
+    closeAddContactModal();
+}
+
+function addContact(firstName, lastName, email, phone) {
+    const tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        userID: userId   // Global userId
+    };
+
+    const jsonPayload = JSON.stringify(tmp);
+
+    const url = urlPrefix + '/addContact.' + extension;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // Show initial adding message in the modal (for validation purposes)
+    const resultSpan = document.getElementById("AddResult");
+    resultSpan.innerHTML = "Adding contact...";
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            try {
+                const jsonObject = JSON.parse(this.responseText);
+
+                if (jsonObject.error) {
+                    resultSpan.innerHTML = jsonObject.error;
+                    return;
+                }
+
+                // Main result message (outside modal)
+                const mainResultSpan = document.getElementById("MainResult");
+                mainResultSpan.style.color = "green";
+                mainResultSpan.innerHTML = "Contact Added Successfully!";
+
+                // Clear fields after success
+                document.getElementById("firstName").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("phoneNumber").value = "";
+
+                searchContact();  // Refresh the contacts list
+            } catch (err) {
+                console.error(err);
+                const mainResultSpan = document.getElementById("MainResult");
+                mainResultSpan.style.color = "red";
+                mainResultSpan.innerHTML = "Error: Server response error.";
+            }
+        }
+    };
+
+    xhr.send(jsonPayload);
 }
