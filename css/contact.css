@@ -30,8 +30,9 @@ body {
 }
 
 #loggedInDiv {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-bottom: 2px solid #eee;
 }
 
@@ -103,7 +104,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 #SearchResult, #AddResult {
     display: block;
-    margin: 15px 0;
+    margin: 12px 0;
     color: #4CAF50;
     font-weight: bold;
 }
