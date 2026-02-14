@@ -39,13 +39,30 @@
             var lastName = document.getElementById('lastName').value;
             var email = document.getElementById('email').value;
             var phoneNumber = document.getElementById('phoneNumber').value;
+            const resultSpan = document.getElementById("EditResult");
             
             if (firstName === '' || lastName === '' || email === '' || phoneNumber === '') {
-                alert('Please fill in all fields!');
+                resultSpan.innerHTML = ('Please fill in all fields!');
                 return;
             }
             
-            //*********
+            if (!firstName || !lastName || !email || !phone) {
+                resultSpan.innerHTML = "All fields are required.";
+                return;
+            }
+
+            // Email check
+            if (!isValidEmail(email)) {
+                resultSpan.innerHTML = "Invalid email format.";
+                return;
+            }
+
+            // Phone check (basic)
+            if (!/^[0-9\-()\s]+$/.test(phone)) {
+                resultSpan.innerHTML = "Invalid phone number.";
+                return;
+            }
+            
             addContact();
             
             closeAddContactModal();
