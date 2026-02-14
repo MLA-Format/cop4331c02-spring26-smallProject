@@ -298,15 +298,25 @@ function addContact()
     let email = document.getElementById("email").value.trim();
     let phone = document.getElementById("phoneNumber").value.trim();
 
+    const resultSpan = document.getElementById("AddResult");
+
+    // Clear old message
+    resultSpan.innerHTML = "";
+    resultSpan.style.color = "red";
+
     if (!firstName || !lastName || !email || !phone)
     {
-        document.getElementById("AddResult").innerHTML = "Please fill in all fields.";
+        resultSpan.innerHTML = "Please fill in all fields.";
         return;
     }
 
     if (!isValidEmail(email)) {
-        document.getElementById("AddResult").innerHTML =
-            "Please enter a valid email address.";
+        resultSpan.innerHTML = "Please enter a valid email address.";
+        return;
+    }
+
+    if (!/^[0-9\-()\s]+$/.test(phone)) {
+        resultSpan.innerHTML = "Invalid phone number.";
         return;
     }
 
