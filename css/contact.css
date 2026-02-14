@@ -294,14 +294,11 @@ input[type="text"]:focus, input[type="email"]:focus {
     width: 100%;
     padding: 10px;
     border: none;
-    background: white;
     text-align: left;
     cursor: pointer;
 }
 
-.dropdown-content button:hover {
-    background-color: #f5f5f5;
-}
+
 
 .dropdown.show .dropdown-content {
     display: block;
