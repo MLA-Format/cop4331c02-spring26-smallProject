@@ -610,11 +610,3 @@ function closeResultsModal() {
     document.getElementById("resultsModal").style.display = "none";
 }
 
-window.onclick = function(event) {
-    const resultsModal = document.getElementById('resultsModal');
-    
-    if (event.target === resultsModal) {
-        closeResultsModal();
-    }
-
-};
