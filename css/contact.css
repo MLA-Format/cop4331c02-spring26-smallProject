@@ -104,7 +104,6 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 #SearchResult, #AddResult {
     display: block;
-    margin: 12px 0;
     color: #4CAF50;
     font-weight: bold;
 }
@@ -150,21 +149,23 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .edit-btn {
+    color: #c9184a;
+    background-color: white;
+}
+
+.edit-btn:hover {
+    background-color: #ffc3d4;
+    color: black;
+}
+
+.delete-btn {
     background-color: #c9184a;
     color: white;
 }
 
-.edit-btn:hover {
-    background-color: #a01438;
-}
-
-.delete-btn {
-    background-color: #f44336;
-    color: white;
-}
-
 .delete-btn:hover {
-    background-color: #da190b;
+    background-color: #ffc3d4;
+    color: black;
 }
 
 .modal {
