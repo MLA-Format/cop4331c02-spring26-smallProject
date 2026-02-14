@@ -527,6 +527,7 @@ function deleteContact(contactId) {
                 document.getElementById("SearchResult").innerHTML = "Contact deleted successfully!";
                 setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
                 searchContact();
+                setTimeout(refreshExpandedResults, 300);
             } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "Delete failed (bad server response).";
                 console.error(err);
@@ -561,6 +562,7 @@ async function editContact(id, firstName, lastName, email, phone) {
 
         resultSpan.innerHTML = "Contact updated!";
         searchContact();
+        setTimeout(refreshExpandedResults, 300);
 
         setTimeout(() => {
             closeEditContactModal();
@@ -610,3 +612,12 @@ function closeResultsModal() {
     document.getElementById("resultsModal").style.display = "none";
 }
 
+function refreshExpandedResults() {
+    const modal = document.getElementById("resultsModal");
+
+
+    if (modal.style.display === "block") {
+        document.getElementById("FullContactList").innerHTML =
+            document.getElementById("ContactList").innerHTML;
+    }
+}
