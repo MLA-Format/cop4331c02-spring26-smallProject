@@ -1,10 +1,10 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-    
 }
+
 body {
     background-color: #ffe1a4ff;
     background-image: url('../images/Forest background.png');
@@ -17,11 +17,11 @@ body {
 
 .container {
     background-color: white;
-    width: 600px;
-    max-width: 90%;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 80%; /* Percentage-based width */
+    max-width: 35em; /* Use em for max-width */
+    padding: 2.5em;
+    border-radius: 1em;
+    box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.3);
     min-height: 80vh;
     position: absolute;
     top: 50%;
@@ -33,19 +33,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px solid #eee;
+    border-bottom: 0.1em solid #eee;
 }
 
 #signoutButton {
     width: 20%;
-    padding: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    border-radius: 25px;
+    padding: 0.6em;
+    margin-right: 1em;
+    margin-top: 1em;
+    border-radius: 1.5em;
     border: none;
     background: #c9184a;
     color: white;
     cursor: pointer;
+    font-size: 1.1em;
     float: right;
 }
 
@@ -55,16 +56,16 @@ body {
 }
 
 #accessUIDiv {
-    margin-top: 20px;
+    margin-top: 2em;
 }
 
 input[type="text"], input[type="email"] {
     width: 70%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 15px;
+    padding: 1.2em;
+    border: 0.1em solid #ddd;
+    border-radius: 0.5em;
+    font-size: 1em;
+    margin-bottom: 1.5em;
 }
 
 input[type="text"]:focus, input[type="email"]:focus {
@@ -75,16 +76,16 @@ input[type="text"]:focus, input[type="email"]:focus {
 .buttons {
     background-color: #c9184a;
     color: white;
-    padding: 12px 25px;
+    padding: 1.2em 2.5em;
     border: none;
     border-radius: 2em;
     cursor: pointer;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 1em;
+    margin: 0.5em;
     transition: background-color 0.3s;
     text-transform: uppercase;
     font-weight: 600;
-    float:right;
+    float: right;
     letter-spacing: 0.15em;
 }
 
@@ -94,8 +95,8 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 #logoutButton {
     background-color: #c9184a;
-    padding: 8px 20px;
-    font-size: 14px;
+    padding: 0.6em 2em;
+    font-size: 0.9em;
 }
 
 #logoutButton:hover {
@@ -110,12 +111,12 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 #ContactList {
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 2em;
+    border-radius: 0.5em;
     min-height: 20vh;
     max-height: 40vh;
-    margin: 15px 0;
-    border: 1px solid #ddd;
+    margin: 1.5em 0;
+    border: 0.1em solid #ddd;
     overflow-y: auto;
 }
 
@@ -123,11 +124,11 @@ input[type="text"]:focus, input[type="email"]:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    margin: 10px 0;
+    padding: 1.5em;
+    margin: 1em 0;
     background-color: white;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border-radius: 0.5em;
+    border: 0.1em solid #ddd;
 }
 
 .contact-info {
@@ -136,15 +137,15 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 .contact-actions {
     display: flex;
-    gap: 10px;
+    gap: 1em;
 }
 
 .action-btn {
-    padding: 8px 15px;
+    padding: 0.5em 1em;
     border: none;
     border-radius: 2em;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1em;
     transition: all 0.3s;
 }
 
@@ -181,16 +182,16 @@ input[type="text"]:focus, input[type="email"]:focus {
 .modal-content {
     background-color: white;
     margin: 1em auto;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 3em;
+    border-radius: 1em;
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
     max-width: 40%; 
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 2em;
     font-weight: bold;
     cursor: pointer;
 }
@@ -200,22 +201,22 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 .form-group {
-    margin: 15px 0;
+    margin: 2em 0;
     text-align: left;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 1em;
     font-weight: bold;
     color: #333;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 1em;
+    border: 0.1em solid #ddd;
+    border-radius: 0.5em;
     box-sizing: border-box;
 }
 
@@ -227,12 +228,12 @@ input[type="text"]:focus, input[type="email"]:focus {
 .submit-button {
     background-color: #c9184a;
     color: white;
-    padding: 12px 30px;
+    padding: 1.2em 3em;
     border: none;
     border-radius: 2em;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 1em;
+    margin-top: 1em;
     width: 100%;
     text-transform: uppercase;
     font-weight: 600;
@@ -246,12 +247,12 @@ input[type="text"]:focus, input[type="email"]:focus {
 .cancel-button {
     background-color: #f44335;
     color: white;
-    padding: 12px 30px;
+    padding: 1.2em 3em;
     border: none;
     border-radius: 2em;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    font-size: 1em;
+    margin-top: 1em;
     width: 100%;
 }
 
@@ -268,9 +269,9 @@ input[type="text"]:focus, input[type="email"]:focus {
 .dots-btn {
     background: none;
     border: none;
-    font-size: 22px;
+    font-size: 1.5em;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 0.5em 1em;
     color: #555;
 }
 
@@ -283,23 +284,21 @@ input[type="text"]:focus, input[type="email"]:focus {
     display: none;
     position: absolute;
     right: 0;
-    top: 30px;
-    min-width: 120px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-radius: 8px;
+    top: 3em;
+    min-width: 12em;
+    box-shadow: 0 0.25em 0.75em rgba(0,0,0,0.15);
+    border-radius: 0.5em;
     overflow: hidden;
     z-index: 100;
 }
 
 .dropdown-content button {
     width: 100%;
-    padding: 10px;
+    padding: 1.2em;
     border: none;
     text-align: left;
     cursor: pointer;
 }
-
-
 
 .dropdown.show .dropdown-content {
     display: block;
@@ -310,4 +309,41 @@ input[type="text"]:focus, input[type="email"]:focus {
     max-width: 1000px;
     height: 80vh;
     overflow-y: auto;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 2em;
+    }
+
+    .modal-content {
+        width: 80%;
+        padding: 2em;
+    }
+
+    input[type="text"], input[type="email"], .submit-button, .cancel-button {
+        font-size: 1em;
+        padding: 1em;
+    }
+
+    .buttons, #logoutButton {
+        font-size: 1em;
+        padding: 1em;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .contact-actions {
+        justify-content: space-between;
+        margin-top: 1em;
+    }
+
+    .dropdown-content {
+        min-width: 100%;
+    }
 }
