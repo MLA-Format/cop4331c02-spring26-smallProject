@@ -319,7 +319,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 @media (max-width: 600px) {
     #signoutButton {
-        width: 30%;
+        width: 40%;
     }
 
     .container {
