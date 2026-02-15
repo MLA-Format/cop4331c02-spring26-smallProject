@@ -312,7 +312,7 @@ input[type="text"]:focus, input[type="email"]:focus {
     overflow-y: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 412px) {
     #signoutButton {
         width: 40%;
     }
