@@ -617,7 +617,6 @@ function addContact(firstName, lastName, email, phone) {
 
     // Show initial adding message in the modal (for validation purposes)
     const resultSpan = document.getElementById("AddResult");
-    resultSpan.innerHTML = "Adding contact...";
 
     xhr.onreadystatechange = function() {
         if (this.readyState === 4) {
