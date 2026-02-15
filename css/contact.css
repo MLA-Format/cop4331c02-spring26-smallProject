@@ -353,7 +353,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 
-@media (max-width: 1122) {
+@media (max-width: 1122, min-width: 600px) {
     .buttons, #logoutButton {
         font-size: 1em;
         padding: 1em;
