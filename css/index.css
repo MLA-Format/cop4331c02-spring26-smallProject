@@ -71,8 +71,6 @@ h6 {
 }
 
 
-
-/* Responsive */
 @media screen and (max-width: 600px) {
     h1 { font-size: 2em; }
     h3 { font-size: 1.2em; }

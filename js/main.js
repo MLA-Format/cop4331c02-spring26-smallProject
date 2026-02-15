@@ -1,4 +1,4 @@
-// TODO: Add actual prefix
+
 const urlPrefix = "http://sp.cop4331c02s26.malcock.com/LAMPAPI";
 const extension = 'php';
 
@@ -127,16 +127,16 @@ function login() {
 
 	let login = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
-	// TODO: Implement hash function here. Note: MD5 may not be secure.
+	
 
 	document.getElementById("loginResult").innerHTML = "";
 
-	// TODO: Change password to be hashed value.
+	
 	let tmp = { login: login, password: password };
 
 	let jsonPayload = JSON.stringify(tmp);
 
-	// TODO: Add path for php login api.
+	
 	let url = urlPrefix + '/login.' + extension;
 
 	let xhr = new XMLHttpRequest();
@@ -160,7 +160,7 @@ function login() {
 
 				saveCookie();
 
-				// TODO: Add correct page html value.
+
 				window.location.href = "ContactManager.html";
 			}
 		};
@@ -220,7 +220,6 @@ function readCookie()
     }
     else
     {
-        // ✅ PRINT LOGGED IN USER
         document.getElementById("userName").innerHTML =
             "Welcome, " + firstName + " " + lastName + "!";
     }
@@ -234,13 +233,11 @@ function addUser() {
     console.log("Username:", usernameRef.value);
     console.log("Password:", passwordRef.value);
 
-    // Basic validation
     if (!firstNameRef.value || !lastNameRef.value || !usernameRef.value || !passwordRef.value) {
         document.getElementById("signupResult").innerHTML = "Please fill in all fields.";
         return;
     }
 
-    // Prepare payload
     let payload = {
         firstNameRef: firstNameRef.value.trim(),
         lastNameRef: lastNameRef.value.trim(),
@@ -363,9 +360,9 @@ function searchContact() {
 
 let deleteContactId = null;
 
-// Event delegation for edit/delete buttons
+
 document.addEventListener("click", function(e) {
-    // Handle edit and delete button clicks
+
     if (e.target.classList.contains("edit-btn") || e.target.classList.contains("delete-btn")) {
         const contactEl = e.target.closest(".contact-item");
         if (!contactEl) return;
@@ -376,7 +373,7 @@ document.addEventListener("click", function(e) {
         if (e.target.classList.contains("delete-btn")) {
             e.stopPropagation();
             openDeleteModal(contactId, contactName);
-            // Close dropdown
+           
             document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
         }
 
@@ -387,13 +384,13 @@ document.addEventListener("click", function(e) {
             const email = contactEl.querySelector(".contact-info").innerHTML.match(/📧 (.+)<br>/)[1];
             const phone = contactEl.querySelector(".contact-info").innerHTML.match(/📞 (.+)/)[1];
             openEditContactModal(contactId, first, last, email, phone);
-            // Close dropdown
+           
             document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
         }
     }
 });
 
-// DELETE MODAL
+
 function openDeleteModal(contactId, contactName) {
     deleteContactId = contactId;
     document.getElementById("deleteModalText").textContent =
@@ -407,7 +404,7 @@ function closeDeleteModal() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Attach delete modal buttons
+  
     const confirmBtn = document.getElementById("confirmDeleteBtn");
     const cancelBtn = document.getElementById("cancelDeleteBtn");
 
@@ -471,7 +468,6 @@ function deleteContact(contactId) {
     xhr.send(jsonPayload);
 }
 
-// EDIT CONTACT
 async function editContact(id, firstName, lastName, email, phone) {
 
     try {
@@ -508,34 +504,29 @@ async function editContact(id, firstName, lastName, email, phone) {
     }
 }
 
-// =======================
-// DROPDOWN
-// =======================
+
 document.addEventListener("click", function(e) {
-    // Toggle dropdown when dots button is clicked
+    
     if (e.target.matches(".dots-btn")) {
         e.stopPropagation();
         const dropdown = e.target.closest(".dropdown");
         
-        // Close other dropdowns
+      
         document.querySelectorAll(".dropdown").forEach(d => {
             if (d !== dropdown) d.classList.remove("show");
         });
         
-        // Toggle this dropdown
+      
         dropdown.classList.toggle("show");
         return;
     }
     
-    // Close dropdowns when clicking outside
     if (!e.target.matches(".dots-btn") && !e.target.closest(".dropdown-content")) {
         document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
     }
 });
 
-// =======================
-// MODALS
-// =======================
+
 function openResultsModal() {
     document.getElementById("resultsModal").style.display = "block";
     document.getElementById("FullContactList").innerHTML =
@@ -566,34 +557,32 @@ function submitNewContact() {
     const email     = document.getElementById('email').value.trim();
     const phone     = document.getElementById('phoneNumber').value.trim();
 
-    // Use Add modal result span for validation messages
+   
     const resultSpan = document.getElementById("AddResult");
     const mainResultSpan = document.getElementById("MainResult");
 
-    // Clear old messages
     resultSpan.innerHTML = "";
     resultSpan.style.color = "red";
-    mainResultSpan.innerHTML = "";  // Clear previous main result
+    mainResultSpan.innerHTML = "";  
 
-    // Empty check
+ 
     if (!firstName || !lastName || !email || !phone) {
         resultSpan.innerHTML = "All fields are required.";
         return;
     }
 
-    // Email check
+
     if (!isValidEmail(email)) {
         resultSpan.innerHTML = "Invalid email format.";
         return;
     }
 
-    // Phone check
+
     if (!/^[0-9\-()\s]+$/.test(phone)) {
         resultSpan.innerHTML = "Invalid phone number.";
         return;
     }
 
-    // Passed validation → submit
     addContact(firstName, lastName, email, phone);
     closeAddContactModal();
 }
@@ -604,7 +593,7 @@ function addContact(firstName, lastName, email, phone) {
         lastName: lastName,
         phone: phone,
         email: email,
-        userID: userId   // Global userId
+        userID: userId 
     };
 
     const jsonPayload = JSON.stringify(tmp);
@@ -615,7 +604,7 @@ function addContact(firstName, lastName, email, phone) {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    // Show initial adding message in the modal (for validation purposes)
+
     const resultSpan = document.getElementById("AddResult");
 
     xhr.onreadystatechange = function() {
@@ -628,18 +617,18 @@ function addContact(firstName, lastName, email, phone) {
                     return;
                 }
 
-                // Main result message (outside modal)
+                
                 const mainResultSpan = document.getElementById("MainResult");
                 mainResultSpan.style.color = "green";
                 mainResultSpan.innerHTML = "Contact Added Successfully!";
 
-                // Clear fields after success
+               
                 document.getElementById("firstName").value = "";
                 document.getElementById("lastName").value = "";
                 document.getElementById("email").value = "";
                 document.getElementById("phoneNumber").value = "";
 
-                searchContact();  // Refresh the contacts list
+                searchContact();  
             } catch (err) {
                 console.error(err);
                 const mainResultSpan = document.getElementById("MainResult");
