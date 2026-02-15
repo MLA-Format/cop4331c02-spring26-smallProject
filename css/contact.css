@@ -31,20 +31,6 @@ body {
     max-height: 90vh; /* Ensure it's not too large */
     overflow-y: auto; /* Allow scrolling within the container */
 }
-.container {
-    background-color: white;
-    width: 60%; 
-    max-width: 50em; /* Use em for max-width */
-    padding: 2.5em;
-    border-radius: 1em;
-    box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.3);
-    min-height: 80vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow-y: auto;
-}
 
 #loggedInDiv {
     display: flex;
@@ -54,17 +40,18 @@ body {
 }
 
 #signoutButton {
+    position: fixed;
     width: 20%;
-    padding: 0.6em;
-    margin-right: 1em;
-    margin-top: 1em;
+    top: 1em;
+    right: 1em;
+    padding: 0.6em 1.5em;
     border-radius: 1.5em;
-    border: none;
     background: #c9184a;
     color: white;
     cursor: pointer;
     font-size: 1.1em;
-    float: right;
+    border: none;
+    z-index: 1000;  /* Ensure it's on top */
 }
 
 #userName {
