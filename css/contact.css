@@ -6,13 +6,31 @@
 }
 
 body {
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 100vh; /* Full viewport height */
     background-color: #ffe1a4ff;
     background-image: url('../images/Forest background.png');
-
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
-
+    overflow: auto; /* Allow scrolling if content overflows */
 }
 
+/* The container that holds the main content */
+.container {
+    background-color: white;
+    width: 60%;
+    max-width: 50em;
+    padding: 2.5em;
+    border-radius: 1em;
+    box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.3);
+    min-height: 80vh;
+    max-height: 90vh; /* Ensure it's not too large */
+    overflow-y: auto; /* Allow scrolling within the container */
+}
 .container {
     background-color: white;
     width: 60%; 
