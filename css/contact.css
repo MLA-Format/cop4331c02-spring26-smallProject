@@ -312,7 +312,6 @@ input[type="text"]:focus, input[type="email"]:focus {
     overflow-y: auto;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .container {
         width: 90%;
@@ -325,12 +324,14 @@ input[type="text"]:focus, input[type="email"]:focus {
 
     input[type="text"], input[type="email"], .submit-button, .cancel-button {
         font-size: 1em;
+        width: 100%
         padding: 1em;
     }
 
     .buttons, #logoutButton {
         font-size: 1em;
         padding: 1em;
+        width: 100%
     }
 
     .contact-item {
