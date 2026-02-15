@@ -353,11 +353,11 @@ input[type="text"]:focus, input[type="email"]:focus {
 }
 
 
-@media (max-width: 1122, min-width: 600px) {
+@media (max-width: 1122px) {
     .buttons, #logoutButton {
         font-size: 1em;
         padding: 1em;
-        width: 100%
+        width: 100%;
     }
 
     input[type="text"], input[type="email"], .submit-button, .cancel-button {
