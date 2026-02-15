@@ -17,8 +17,8 @@ body {
 
 .container {
     background-color: white;
-    width: 80%; /* Percentage-based width */
-    max-width: 35em; /* Use em for max-width */
+    width: 60%; 
+    max-width: 50em; /* Use em for max-width */
     padding: 2.5em;
     border-radius: 1em;
     box-shadow: 0 0.5em 2em rgba(0, 0, 0, 0.3);
@@ -185,7 +185,8 @@ input[type="text"]:focus, input[type="email"]:focus {
     padding: 3em;
     border-radius: 1em;
     box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.2);
-    max-width: 40%; 
+    width: 60%;
+    max-width: 30em;
 }
 
 .close {
@@ -319,7 +320,6 @@ input[type="text"]:focus, input[type="email"]:focus {
     }
 
     .modal-content {
-        width: 80%;
         padding: 2em;
     }
 
