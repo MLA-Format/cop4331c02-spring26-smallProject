@@ -9,7 +9,6 @@ body {
     justify-content: center; /* Horizontally center content */
     align-items: flex-start; /* Align to the top */
     height: 100vh; /* Full viewport height */
-    flex-direction: column; /* Stack the content vertically */
     background-color: #ffe1a4ff;
     background-image: url('../images/Forest background.png');
     background-position: center center;
