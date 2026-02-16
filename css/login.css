@@ -1,0 +1,339 @@
+:root {
+    --fur-dark: #8b5a2b;     /* brown */
+    --fur-light: #f2c38b;    /* tan */
+    --outline: #4b2e1a;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+body {
+    background-color: #ffe1a4ff;
+    background-image: url('../images/Forest background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+.container{
+    height: 31.25em;
+    width: 31.25em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+form{
+    width: 23.75em;
+    height: 18.75em;
+    background-color: #ffffff;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: calc(50% + 3.1em);
+    left: 50%;
+    padding: 0 3.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5em;
+}
+form label{
+    display: block;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+    color: #2e0d30;
+}
+form input{
+    font-size: 0.95em;
+    font-weight: 400;
+    color: #3f3554;
+    padding: 0.3em;
+    border: none;
+    outline: none;
+    border-bottom: 0.12em solid #3f3554;
+}
+form input:focus{
+    border-color: #c9184a;
+}
+form input:not(:last-child){
+    margin-bottom: 0.9em;
+}
+form button{
+    font-size: 0.95em;
+    padding: 0.8em 0;
+    border-radius: 2em;
+    border: none;
+    outline: none;
+    background-color: #c9184a;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    margin-top: 0.8em;
+}
+
+#signupButton {
+    width: 20%;
+    padding: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    border: none;
+    background: #c9184a;
+    color: white;
+    cursor: pointer;
+    float: right;
+}
+
+.loginResult {
+    color: red;
+}
+
+.account {
+    align-self: center;
+}
+
+.signup-link {
+    color: #c9184a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.monkey-face {
+    height: 7.8em;
+    width: 8.6em;
+    background-color: var(--fur-dark);
+    border: 0.18em solid var(--outline);
+    border-radius: 50%;
+    position: absolute;
+    top: 2em;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.face-mask {
+    position: absolute;
+    top: 2.2em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6.5em;
+    height: 5.8em;
+    z-index: 1;
+}
+
+/* cheeks */
+.mask-left,
+.mask-right {
+    position: absolute;
+    width: 3.6em;
+    height: 3.4em;
+    background-color: var(--fur-light);
+    border-radius: 50%;
+    bottom: 50px;
+}
+
+.mask-left {
+    left: 0;
+}
+
+.mask-right {
+    right: 0;
+}
+
+/* bottom muzzle circle */
+.mask-bottom {
+    position: absolute;
+    width: 6.5em;
+    height: 3.6em;
+    background-color: var(--fur-light);
+    border-radius: 50%;
+    bottom: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.eye-1,
+.eye-r,
+.nose,
+.blush-1,
+.blush-r,
+.mouth,
+.hand-1,
+.hand-r {
+    position: absolute;
+    z-index: 2;
+}
+.ear-1,
+.ear-r {
+    background-color: var(--fur-dark);
+    height: 2.8em;
+    width: 2.8em;
+    border: 0.18em solid var(--outline);
+    border-radius: 50%;
+    top: 2.1em;
+    position: absolute;
+}
+.ear-1 {
+    left: 9.8em;
+}
+.ear-r {
+    right: 10em;
+}
+.ear-1::after,
+.ear-r::after {
+    content: "";
+    position: absolute;
+    height: 1.6em;
+    width: 1.6em;
+    background-color: var(--fur-light);
+    border-radius: 50%;
+    top: 0.6em;
+    left: 0.6em;
+}
+.blush-1,
+.blush-r{
+    background-color: #fd4a85;
+    height: 1em;
+    width: 1.37em;
+    border-radius: 50%;
+    position: absolute;
+    top: 4em;
+}
+.blush-1{
+    transform: rotate(25deg);
+    left: 1em;
+}
+.blush-r{
+    transform: rotate(-25deg);
+    right: 1em;
+}
+.eye-1,
+.eye-r {
+    background-color: #000;
+    height: 2em;
+    width: 1.8em;
+    border-radius: 50%;
+    position: absolute;
+    top: 2.2em;
+}
+.eye-1{
+    left: 1.37em;
+    transform: rotate(-20deg);
+}
+.eye-r{
+    right: 1.37em;
+    transform: rotate(20deg);
+}
+.eyeball-1,
+.eyeball-r{
+    height: 0.6em;
+    width: 0.6em;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 0.6em;
+    top: 0.6em;
+    transition: 1s all;
+}
+.eyeball-1{
+    transform: rotate(20deg);
+}
+.eyeball-r{
+    transform: rotate(-20deg);
+}
+.nose {
+    width: 1.3em;
+    height: 0.9em;
+    background-color: #6b4f31;
+    border-radius: 50% 50% 60% 60%;
+    position: absolute;
+    top: 4.3em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.mouth {
+    position: absolute;
+    width: 2.8em;
+    height: 1.6em;
+    border-bottom: 0.25em solid #000000;
+    border-radius: 0 0 2.5em 2.5em;
+    top: 5.0em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.hand-1,
+.hand-r{
+    background-color: var(--fur-dark);
+    height: 2.81em;
+    width: 2.5em;
+    border: 0.18em solid  var(--outline);
+    border-radius: 0.6em 0.6em 2.18em 2.18em;
+    transition: 1s all;
+    position: absolute;
+    top: 8em;
+}
+.hand-1{
+    left: 7.5em;
+}
+.hand-r{
+    right: 7.5em;
+}
+.paw-1,
+.paw-r{
+    background-color: var(--fur-dark);
+    height: 3.12em;
+    width: 3.12em;
+    border: 0.18em solid  var(--outline);
+    border-radius: 2.5em 2.5em 1.2em 1.2em;
+    position: absolute;
+    top: 26.56em;
+}
+.paw-1{
+    left: 10em;
+}
+.paw-r{
+    right: 10em;
+}
+.paw-1::before,
+.paw-r::before{
+    position: absolute;
+    content: '';
+    background-color: #ffffff;
+    height: 1.37em;
+    width: 1.75em;
+    top: 1.12em;
+    left: 0.55em;
+    border-radius: 1.56em 1.56em 0.6em 0.6em;
+}
+.paw-1::after,
+.paw-r::after{
+    position: absolute;
+    content: '';
+    background-color: #ffffff;
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 50%;
+    top: 0.31em;
+    left: 1.12em;
+    box-shadow: 0.87em 0.37em #ffffff, -0.87em 0.37em #ffffff;
+}
+@media screen and (max-width: 500px){
+    .container{
+        font-size: 14px;
+    }
+}
+
+
