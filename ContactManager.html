@@ -4,5 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monkey Mingle</title>
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+    <!--
+    Functions needed in code.js:
+    - addContact()
+    - searchContact()
+    - editContact()
+    - deleteContact()
+    -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            readCookie();
+        }, false);
+        
+        function openAddContactModal() {
+            document.getElementById('addContactModal').style.display = 'block';
+        }
+        
+        function closeAddContactModal() {
+            document.getElementById('addContactModal').style.display = 'none';
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phoneNumber').value = '';
+        }
+        
+
+        function openEditContactModal(contactId, firstName, lastName, email, phoneNumber) {
+            document.getElementById('editContactModal').style.display = 'block';
+            document.getElementById('editContactModal').style.zIndex = '2000';
+            document.getElementById('editContactId').value = contactId;
+            document.getElementById('editFirstName').value = firstName;
+            document.getElementById('editLastName').value = lastName;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editPhoneNumber').value = phoneNumber;
+        }
+        
+        function closeEditContactModal() {
+            document.getElementById('editContactModal').style.display = 'none';
+        }
+        
+        function submitEditContact() {
+
+            const contactId = document.getElementById('editContactId').value;
+
+            const firstName = document.getElementById('editFirstName').value.trim();
+            const lastName  = document.getElementById('editLastName').value.trim();
+            const email     = document.getElementById('editEmail').value.trim();
+            const phone     = document.getElementById('editPhoneNumber').value.trim();
+
+            const resultSpan = document.getElementById("EditResult");
+
+            resultSpan.innerHTML = "";
+            resultSpan.style.color = "red";
+
+         
+            if (!firstName || !lastName || !email || !phone) {
+                resultSpan.innerHTML = "All fields are required.";
+                return;
+            }
+
+           
+            if (!isValidEmail(email)) {
+                resultSpan.innerHTML = "Invalid email format.";
+                return;
+            }
+
+   
+            if (!/^[0-9\-()\s]+$/.test(phone)) {
+                resultSpan.innerHTML = "Invalid phone number.";
+                return;
+            }
+
+
+            editContact(contactId, firstName, lastName, email, phone);
+        }
+
+
+        
+        window.onclick = function(event) {
+            var addModal = document.getElementById('addContactModal');
+            var editModal = document.getElementById('editContactModal');
+            if (event.target == addModal) {
+                closeAddContactModal();
+            }
+            if (event.target == editModal) {
+                closeEditContactModal();
+            }
+        }
+    </script>
+    
+
+<body>
+
+    <button type="button" id="signoutButton" class="buttons" onclick="logout();"> Log Out </button>
+
+<div class="container">
+
+    <div id="loggedInDiv">
+        <span id="userName">Welcome </span><br>
+        <button type="button" id="addColorButton" class="buttons" onclick="openAddContactModal();"> Add New Contact </button><br>
+        <span id="MainResult"></span>
+    </div>
+
+    <div id="accessUIDiv">
+        <input type="text" id="searchText" placeholder="Search For Contact">
+        <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();">Search</button><br>
+         <span id="SearchResult"></span>
+        <p id="ContactList"></p>
+        <button type="button" id="expandResultsBtn" class="buttons" style="display: none;" onclick="openResultsModal()">
+            Expand Results
+        </button>
+
+    </div>
+</div>
+
+<div id="addContactModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddContactModal();">×</span>
+        
+        <h2>Add New Contact</h2>
+        
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="Enter first name">
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Enter last name">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email">
+        </div>
+        
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        </div>
+
+        <span id="AddResult" style="color: red;"></span>
+        
+        <button type="button" class="submit-button" onclick="submitNewContact();">
+            Add Contact
+        </button>
+        
+        <button type="button" class="cancel-button" onclick="closeAddContactModal();">
+            Cancel
+        </button>
+
+    </div>
+</div>
+
+<div id="editContactModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditContactModal();">×</span>
+        
+        <h2>Edit Contact</h2>
+        
+        <input type="hidden" id="editContactId">
+        
+        <div class="form-group">
+            <label for="editFirstName">First Name:</label>
+            <input type="text" id="editFirstName" placeholder="Enter first name">
+        </div>
+        
+        <div class="form-group">
+            <label for="editLastName">Last Name:</label>
+            <input type="text" id="editLastName" placeholder="Enter last name">
+        </div>
+        
+        <div class="form-group">
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail" placeholder="Enter email">
+        </div>
+        
+        <div class="form-group">
+            <label for="editPhoneNumber">Phone Number:</label>
+            <input type="text" id="editPhoneNumber" placeholder="Enter phone number">
+        </div>
+        <span id="EditResult" style="color: green;"></span>
+        <button type="button" class="submit-button" onclick="submitEditContact();">
+            Update Contact
+        </button>
+        
+        <button type="button" class="cancel-button" onclick="closeEditContactModal();">
+            Cancel
+        </button>
+    </div>
+</div>
+
+<div id="resultsModal" class="modal">
+    <div class="modal-content large-modal">
+        <span class="close" onclick="closeResultsModal()">×</span>
+        <h2>Search Results</h2>
+        <div id="FullContactList"></div>
+    </div>
+</div>
+
+<div id="deleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <p id="deleteModalText">Are you sure you want to delete this contact?</p>
+        <button id="confirmDeleteBtn" class="submit-button">Delete</button>
+        <button id="cancelDeleteBtn" class="cancel-button">Cancel</button>
+    </div>
+</div>
+
+
+
+</body>
+</html>
     <link rel="stylesheet" href="css/index.css">
 </head>

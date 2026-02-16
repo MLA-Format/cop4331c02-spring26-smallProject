@@ -1,6 +1,6 @@
 :root {
-    --fur-dark: #8b5a2b;     /* brown */
-    --fur-light: #f2c38b;    /* tan */
+    --fur-dark: #8b5a2b;     
+    --fur-light: #f2c38b;    
     --outline: #4b2e1a;
 }
 
@@ -130,7 +130,7 @@ form button{
     z-index: 1;
 }
 
-/* cheeks */
+
 .mask-left,
 .mask-right {
     position: absolute;
@@ -149,7 +149,7 @@ form button{
     right: 0;
 }
 
-/* bottom muzzle circle */
+
 .mask-bottom {
     position: absolute;
     width: 6.5em;
