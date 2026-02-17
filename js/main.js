@@ -314,7 +314,9 @@ function searchContact() {
                 let jsonObject = JSON.parse(this.responseText);
 
                 if (jsonObject.error && jsonObject.error !== "") {
-                    document.getElementById("SearchResult").innerHTML = "*Error: " + jsonObject.error;
+                    let searchResult = document.getElementById("SearchResult");
+                    searchResult.style.color = "red";
+                    searchResult.innerHTML = "*Error: No Contacts Found.";
                     return;
                 }
 
