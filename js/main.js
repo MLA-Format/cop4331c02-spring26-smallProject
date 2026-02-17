@@ -466,11 +466,6 @@ function deleteContact(contactId) {
                 setTimeout(() => {
                     searchContact();
                     setTimeout(refreshExpandedResults, 300);
-
-                  
-                    setTimeout(() => {
-                        resultSpan.innerHTML = "";
-                    }, 500);
                 }, 1000); 
                 
             } catch (err) {
