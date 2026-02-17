@@ -18,7 +18,9 @@ composer require vlucas/phpdotenv
 
 ## Mason
 Used Claude to help build foundational knowledge in PHP.
+
 Used Claude to help learn how to setup the initial git repo and the server.
+
 Used Claude to help check for security vulnerabilities.
 
 ## Emily
