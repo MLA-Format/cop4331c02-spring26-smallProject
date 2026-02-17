@@ -65,19 +65,19 @@
 
          
             if (!firstName || !lastName || !email || !phone) {
-                resultSpan.innerHTML = "All fields are required.";
+                resultSpan.innerHTML = "*All fields are required.";
                 return;
             }
 
            
             if (!isValidEmail(email)) {
-                resultSpan.innerHTML = "Invalid email format.";
+                resultSpan.innerHTML = "*Invalid email format.";
                 return;
             }
 
    
             if (!/^[0-9\-()\s]+$/.test(phone)) {
-                resultSpan.innerHTML = "Invalid phone number.";
+                resultSpan.innerHTML = "*Invalid phone number.";
                 return;
             }
 
