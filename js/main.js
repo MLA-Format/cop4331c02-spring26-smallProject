@@ -458,10 +458,21 @@ function deleteContact(contactId) {
                     document.getElementById("SearchResult").innerHTML = "*Error: " + (jsonObject.error || "Unknown error");
                     return;
                 }
-                document.getElementById("SearchResult").innerHTML = "*Success: Contact deleted successfully!";
+                const resultSpan = document.getElementById("SearchResult");
+
+               
+                resultSpan.style.color = "green";
+                resultSpan.innerHTML = "*Success: Contact deleted successfully!";
+
+             
                 searchContact();
-                setTimeout(refreshExpandedResults, 300);
-                setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
+                setTimeout(() => {
+                    refreshExpandedResults();
+                    
+                    setTimeout(() => {
+                        resultSpan.innerHTML = "";
+                    }, 500); 
+                }, 300);
             } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "*Error: Delete failed (bad server response).";
                 console.error(err);
