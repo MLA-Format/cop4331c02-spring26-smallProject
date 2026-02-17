@@ -474,6 +474,7 @@ async function editContact(id, firstName, lastName, email, phone) {
         const jsonPayload = JSON.stringify(tmp);
         const url = `${urlPrefix}/updateContact.${extension}`;
         const resultSpan = document.getElementById("EditResult");
+        resultSpan.style.color = "green";
         resultSpan.innerHTML = "*Updating...";
 
         const response = await fetch(url, {
@@ -485,6 +486,7 @@ async function editContact(id, firstName, lastName, email, phone) {
         const data = await response.json();
 
         if (!response.ok || data.error) {
+            resultSpan.style.color = "red";
             resultSpan.innerHTML = data.error || "*Server error (" + response.status + ")";
             return;
         }
@@ -499,6 +501,7 @@ async function editContact(id, firstName, lastName, email, phone) {
         }, 800);
     } catch (err) {
         console.error("Edit Contact Error:", err);
+        resultSpan.style.color = "red";
         document.getElementById("EditResult").innerHTML = "*Update failed.";
     }
 }

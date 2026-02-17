@@ -61,22 +61,24 @@
             const resultSpan = document.getElementById("EditResult");
 
             resultSpan.innerHTML = "";
-            resultSpan.style.color = "red";
 
          
             if (!firstName || !lastName || !email || !phone) {
+                resultSpan.style.color = "red";
                 resultSpan.innerHTML = "*All fields are required.";
                 return;
             }
 
            
             if (!isValidEmail(email)) {
+                resultSpan.style.color = "red";
                 resultSpan.innerHTML = "*Invalid email format.";
                 return;
             }
 
    
             if (!/^[0-9\-()\s]+$/.test(phone)) {
+                resultSpan.style.color = "red";
                 resultSpan.innerHTML = "*Invalid phone number.";
                 return;
             }
