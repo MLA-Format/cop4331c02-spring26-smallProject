@@ -621,6 +621,10 @@ function addContact(firstName, lastName, email, phone) {
                 mainResultSpan.style.color = "green";
                 mainResultSpan.innerHTML = "*Contact Added Successfully!";
 
+                setTimeout(() => {
+                    mainResultSpan.innerHTML = "";
+                }, 2000);
+
                
                 document.getElementById("firstName").value = "";
                 document.getElementById("lastName").value = "";
