@@ -61,23 +61,25 @@
             const resultSpan = document.getElementById("EditResult");
 
             resultSpan.innerHTML = "";
-            resultSpan.style.color = "red";
 
          
             if (!firstName || !lastName || !email || !phone) {
-                resultSpan.innerHTML = "All fields are required.";
+                resultSpan.style.color = "red";
+                resultSpan.innerHTML = "*All fields are required.";
                 return;
             }
 
            
             if (!isValidEmail(email)) {
-                resultSpan.innerHTML = "Invalid email format.";
+                resultSpan.style.color = "red";
+                resultSpan.innerHTML = "*Invalid email format.";
                 return;
             }
 
    
             if (!/^[0-9\-()\s]+$/.test(phone)) {
-                resultSpan.innerHTML = "Invalid phone number.";
+                resultSpan.style.color = "red";
+                resultSpan.innerHTML = "*Invalid phone number.";
                 return;
             }
 
@@ -172,22 +174,22 @@
         <input type="hidden" id="editContactId">
         
         <div class="form-group">
-            <label for="editFirstName">First Name:</label>
+            <label for="editFirstName">First Name: *</label>
             <input type="text" id="editFirstName" placeholder="Enter first name">
         </div>
         
         <div class="form-group">
-            <label for="editLastName">Last Name:</label>
+            <label for="editLastName">Last Name: *</label>
             <input type="text" id="editLastName" placeholder="Enter last name">
         </div>
         
         <div class="form-group">
-            <label for="editEmail">Email:</label>
+            <label for="editEmail">Email: *</label>
             <input type="email" id="editEmail" placeholder="Enter email">
         </div>
         
         <div class="form-group">
-            <label for="editPhoneNumber">Phone Number:</label>
+            <label for="editPhoneNumber">Phone Number: *</label>
             <input type="text" id="editPhoneNumber" placeholder="Enter phone number">
         </div>
         <span id="EditResult" style="color: green;"></span>

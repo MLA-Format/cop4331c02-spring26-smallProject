@@ -22,3 +22,8 @@ Used Claude to understand the login.php provided by Professor Leinecker. During 
 I also used Claude to help understand why I cannot push an empty folder to a github repository as well as to find a workaround to this. The workaround was using .gitkeep files.
 
 Used Claude to understand how to set variables to be optional in PHP, as well as setting variables in function calls by name. Also used Claude to help understand Login.PHP and AddColor.PHP files from Colors Lab, which led to using Claude to help debug and validate a more streamlined approach to handling the responses in the PHP. Finally, used Claude to validate that the new method used for handling responses was secure and did not introduce any security vulnerabilities.
+
+## Emily
+Used CanvaAI to generate background image.
+
+Used Claude to help make the monkey animations as well as debugging the connections of APIs.
