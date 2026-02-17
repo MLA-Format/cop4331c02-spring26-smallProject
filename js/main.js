@@ -166,7 +166,7 @@ function login() {
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("loginResult").innerHTML = "*" + err.message;
 	}
 }
 
@@ -262,7 +262,7 @@ function addUser() {
 
                 if (response.err || response.error) {
                     document.getElementById("signupResult").innerHTML =
-                        "Error: " + (response.err || response.error);
+                        "*Error: " + (response.err || response.error);
                     return;
                 }
 
@@ -304,7 +304,7 @@ function searchContact() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    document.getElementById("SearchResult").innerHTML = "Searching...";
+    document.getElementById("SearchResult").innerHTML = "*Searching...";
     document.getElementById("ContactList").innerHTML = "";
     document.getElementById("expandResultsBtn").style.display = "none";
 
@@ -314,7 +314,7 @@ function searchContact() {
                 let jsonObject = JSON.parse(this.responseText);
 
                 if (jsonObject.error && jsonObject.error !== "") {
-                    document.getElementById("SearchResult").innerHTML = jsonObject.error;
+                    document.getElementById("SearchResult").innerHTML = "*" + jsonObject.error;
                     return;
                 }
 
@@ -487,7 +487,7 @@ async function editContact(id, firstName, lastName, email, phone) {
 
         if (!response.ok || data.error) {
             resultSpan.style.color = "red";
-            resultSpan.innerHTML = data.error || "*Server error (" + response.status + ")";
+            resultSpan.innerHTML = "*" + data.error || "*Server error (" + response.status + ")";
             return;
         }
 
@@ -615,7 +615,7 @@ function addContact(firstName, lastName, email, phone) {
                 const jsonObject = JSON.parse(this.responseText);
 
                 if (jsonObject.error) {
-                    resultSpan.innerHTML = jsonObject.error;
+                    resultSpan.innerHTML = "*" + jsonObject.error;
                     return;
                 }
 
