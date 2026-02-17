@@ -459,9 +459,9 @@ function deleteContact(contactId) {
                     return;
                 }
                 document.getElementById("SearchResult").innerHTML = "*Success: Contact deleted successfully!";
-                setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
                 searchContact();
                 setTimeout(refreshExpandedResults, 300);
+                setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
             } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "*Error: Delete failed (bad server response).";
                 console.error(err);
