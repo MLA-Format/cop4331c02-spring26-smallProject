@@ -459,13 +459,19 @@ function deleteContact(contactId) {
                     return;
                 }
                 
-                searchContact();
-                setTimeout(refreshExpandedResults, 300);
                 resultSpan.style.color = "green";
                 resultSpan.innerHTML = "*Success: Contact deleted successfully!";
+
+               
                 setTimeout(() => {
-                    resultSpan.innerHTML = "";
-                }, 2000);
+                    searchContact();
+                    setTimeout(refreshExpandedResults, 300);
+
+                  
+                    setTimeout(() => {
+                        resultSpan.innerHTML = "";
+                    }, 500);
+                }, 1000); 
                 
             } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "*Error: Delete failed (bad server response).";
