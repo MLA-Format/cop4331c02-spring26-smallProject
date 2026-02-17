@@ -151,7 +151,7 @@ function login() {
 
 
 				if (jsonObj.error) {
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect.";
+					document.getElementById("loginResult").innerHTML = "*User/Password combination incorrect.";
 					return;
 				}
 
@@ -234,7 +234,7 @@ function addUser() {
     console.log("Password:", passwordRef.value);
 
     if (!firstNameRef.value || !lastNameRef.value || !usernameRef.value || !passwordRef.value) {
-        document.getElementById("signupResult").innerHTML = "Please fill in all fields.";
+        document.getElementById("signupResult").innerHTML = "*Please fill in all fields.";
         return;
     }
 
@@ -253,7 +253,7 @@ function addUser() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    document.getElementById("signupResult").innerHTML = "Creating user...";
+    document.getElementById("signupResult").innerHTML = "*Creating user...";
 
     xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
@@ -268,18 +268,18 @@ function addUser() {
 
                 if (this.status === 200) {
                     document.getElementById("signupResult").innerHTML =
-                        "User created successfully!";
+                        "*User created successfully!";
 
                     setTimeout(() => {
                         window.location.href = "login.html";
                     }, 1500);
                 } else {
                     document.getElementById("signupResult").innerHTML =
-                        "Server error: " + this.status;
+                        "*Server error: " + this.status;
                 }
             } catch (e) {
                 document.getElementById("signupResult").innerHTML =
-                    "Invalid server response";
+                    "*Invalid server response";
                 console.error(e);
             }
         }
@@ -321,7 +321,7 @@ function searchContact() {
                 let contacts = jsonObject.results;
 
                 if (!contacts || contacts.length === 0) {
-                    document.getElementById("SearchResult").innerHTML = "No Contacts Found.";
+                    document.getElementById("SearchResult").innerHTML = "*No Contacts Found.";
                     return;
                 }
 
@@ -348,7 +348,7 @@ function searchContact() {
 
                 document.getElementById("expandResultsBtn").style.display = "inline-block";
             } catch (err) {
-                document.getElementById("SearchResult").innerHTML = "Search failed.";
+                document.getElementById("SearchResult").innerHTML = "*Search failed.";
                 console.error(err);
             }
         }
@@ -431,7 +431,6 @@ if (deleteModal) {
 
 function deleteContact(contactId) {
 
-    console.log("made it");
     const tmp = { id: contactId };
     const jsonPayload = JSON.stringify(tmp);
     let url = urlPrefix + '/deleteContact.' + extension;
@@ -440,26 +439,26 @@ function deleteContact(contactId) {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    document.getElementById("SearchResult").innerHTML = "Processing...";
+    document.getElementById("SearchResult").innerHTML = "*Processing...";
 
     xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
             if (this.status !== 200) {
-                document.getElementById("SearchResult").innerHTML = "Server error (" + this.status + ")";
+                document.getElementById("SearchResult").innerHTML = "*Server error (" + this.status + ")";
                 return;
             }
             try {
                 const jsonObject = JSON.parse(this.responseText);
                 if (jsonObject.error || jsonObject.status === "error") {
-                    document.getElementById("SearchResult").innerHTML = "Error: " + (jsonObject.error || "Unknown error");
+                    document.getElementById("SearchResult").innerHTML = "*Error: " + (jsonObject.error || "Unknown error");
                     return;
                 }
-                document.getElementById("SearchResult").innerHTML = "Contact deleted successfully!";
+                document.getElementById("SearchResult").innerHTML = "*Contact deleted successfully!";
                 setTimeout(() => { document.getElementById("SearchResult").innerHTML = ""; }, 2000);
                 searchContact();
                 setTimeout(refreshExpandedResults, 300);
             } catch (err) {
-                document.getElementById("SearchResult").innerHTML = "Delete failed (bad server response).";
+                document.getElementById("SearchResult").innerHTML = "*Delete failed (bad server response).";
                 console.error(err);
             }
         }
@@ -475,7 +474,7 @@ async function editContact(id, firstName, lastName, email, phone) {
         const jsonPayload = JSON.stringify(tmp);
         const url = `${urlPrefix}/updateContact.${extension}`;
         const resultSpan = document.getElementById("EditResult");
-        resultSpan.innerHTML = "Updating...";
+        resultSpan.innerHTML = "*Updating...";
 
         const response = await fetch(url, {
             method: "POST",
@@ -486,11 +485,11 @@ async function editContact(id, firstName, lastName, email, phone) {
         const data = await response.json();
 
         if (!response.ok || data.error) {
-            resultSpan.innerHTML = data.error || "Server error (" + response.status + ")";
+            resultSpan.innerHTML = data.error || "*Server error (" + response.status + ")";
             return;
         }
 
-        resultSpan.innerHTML = "Contact updated!";
+        resultSpan.innerHTML = "*Contact updated!";
         searchContact();
         setTimeout(refreshExpandedResults, 300);
 
@@ -500,7 +499,7 @@ async function editContact(id, firstName, lastName, email, phone) {
         }, 800);
     } catch (err) {
         console.error("Edit Contact Error:", err);
-        document.getElementById("EditResult").innerHTML = "Update failed.";
+        document.getElementById("EditResult").innerHTML = "*Update failed.";
     }
 }
 
@@ -567,19 +566,19 @@ function submitNewContact() {
 
  
     if (!firstName || !lastName || !email || !phone) {
-        resultSpan.innerHTML = "All fields are required.";
+        resultSpan.innerHTML = "*All fields are required.";
         return;
     }
 
 
     if (!isValidEmail(email)) {
-        resultSpan.innerHTML = "Invalid email format.";
+        resultSpan.innerHTML = "*Invalid email format.";
         return;
     }
 
 
     if (!/^[0-9\-()\s]+$/.test(phone)) {
-        resultSpan.innerHTML = "Invalid phone number.";
+        resultSpan.innerHTML = "*Invalid phone number.";
         return;
     }
 
@@ -620,7 +619,7 @@ function addContact(firstName, lastName, email, phone) {
                 
                 const mainResultSpan = document.getElementById("MainResult");
                 mainResultSpan.style.color = "green";
-                mainResultSpan.innerHTML = "Contact Added Successfully!";
+                mainResultSpan.innerHTML = "*Contact Added Successfully!";
 
                
                 document.getElementById("firstName").value = "";
@@ -633,7 +632,7 @@ function addContact(firstName, lastName, email, phone) {
                 console.error(err);
                 const mainResultSpan = document.getElementById("MainResult");
                 mainResultSpan.style.color = "red";
-                mainResultSpan.innerHTML = "Error: Server response error.";
+                mainResultSpan.innerHTML = "*Error: Server response error.";
             }
         }
     };
