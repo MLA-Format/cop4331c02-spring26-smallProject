@@ -253,6 +253,7 @@ function addUser() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
+    document.getElementById("signupResult").style.color = "green";
     document.getElementById("signupResult").innerHTML = "*Success: Creating user...";
 
     xhr.onreadystatechange = function () {
@@ -267,6 +268,7 @@ function addUser() {
                 }
 
                 if (this.status === 200) {
+                    document.getElementById("signupResult").style.color = "green";
                     document.getElementById("signupResult").innerHTML =
                         "*Success: User created successfully!";
 
@@ -274,6 +276,7 @@ function addUser() {
                         window.location.href = "login.html";
                     }, 1500);
                 } else {
+                    document.getElementById("signupResult").style.color = "red";
                     document.getElementById("signupResult").innerHTML =
                         "*Server error: " + this.status;
                 }
