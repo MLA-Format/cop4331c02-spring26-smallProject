@@ -307,7 +307,7 @@ function searchContact() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    document.getElementById("SearchResult").innerHTML = "*Success: Searching...";
+    
     document.getElementById("ContactList").innerHTML = "";
     document.getElementById("expandResultsBtn").style.display = "none";
 
@@ -465,10 +465,13 @@ function deleteContact(contactId) {
                 resultSpan.innerHTML = "*Success: Contact deleted successfully!";
 
                
+                searchContact();
+                setTimeout(refreshExpandedResults, 300);
+
+                
                 setTimeout(() => {
-                    searchContact();
-                    setTimeout(refreshExpandedResults, 300);
-                }, 1000); 
+                    searchResult.innerHTML = "";
+                }, 2000);
                 
             } catch (err) {
                 document.getElementById("SearchResult").innerHTML = "*Error: Delete failed (bad server response).";
